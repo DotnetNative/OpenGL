@@ -11,7 +11,7 @@ namespace OpenGL;
 public unsafe static class GL
 {
     public static GLInterface Interface { get; private set; }
-    static GL()
+    public static void InitGL()
     {
         Interface = new GLInterface();
     }
@@ -352,13 +352,6 @@ public unsafe static class GL
     public static void Vertex4sv(short[] v) => Interface.glVertex4sv(v.Ptr());
     public static void VertexPointer(int size, Enums.TexType type, int stride, void* pointer) => Interface.glVertexPointer(size, type, stride, pointer);
     public static void Viewport(int x, int y, int width, int height) => Interface.glViewport(x, y, width, height);
-
-    private static T* Ptr<T>(this T obj) where T : unmanaged
-    {
-        TypedReference reference = __makeref(obj);
-        IntPtr addr = (IntPtr)(&reference);
-        return (T*)addr.ToPointer();
-    }
 
     private static T* Ptr<T>(this T[] obj) where T : unmanaged
     {

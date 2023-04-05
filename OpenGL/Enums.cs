@@ -39,10 +39,10 @@ public unsafe static class Enums
         LineLoop = GL_LINE_LOOP,
         LineStrip = GL_LINE_STRIP,
         Triangles = GL_TRIANGLES,
-        TrianglesStript = GL_TRIANGLE_STRIP,
-        TrianglesFan = GL_TRIANGLE_FAN,
+        TriangleStript = GL_TRIANGLE_STRIP,
+        TriangleFan = GL_TRIANGLE_FAN,
         Quads = GL_QUADS,
-        QuadsStript = GL_QUAD_STRIP,
+        QuadStript = GL_QUAD_STRIP,
         Polygon = GL_POLYGON
     }
 
@@ -224,7 +224,7 @@ public unsafe static class Enums
     { 
         UByte = GL_UNSIGNED_BYTE,
         UShort = GL_UNSIGNED_SHORT,
-        Unt = GL_UNSIGNED_INT,
+        UInt = GL_UNSIGNED_INT,
     }
 
     public enum BSType : int
@@ -257,7 +257,7 @@ public unsafe static class Enums
         UByte = GL_UNSIGNED_BYTE,
         Short = GL_UNSIGNED_SHORT,
         UShort = GL_SHORT,
-        Unt = GL_UNSIGNED_INT,
+        UInt = GL_UNSIGNED_INT,
         Int = GL_INT,
         Bitmap = GL_BITMAP,
     }
@@ -268,7 +268,7 @@ public unsafe static class Enums
         UByte = GL_UNSIGNED_BYTE,
         Short = GL_UNSIGNED_SHORT,
         UShort = GL_SHORT,
-        Unt = GL_UNSIGNED_INT,
+        UInt = GL_UNSIGNED_INT,
         Int = GL_INT,
         Bitmap = GL_BITMAP,
         Float = GL_FLOAT

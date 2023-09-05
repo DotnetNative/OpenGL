@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 
 namespace OpenGL;
 internal class Interop
 {
-    [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
-    internal static extern IntPtr GetModuleHandle([MarshalAs(UnmanagedType.LPWStr)] string lpModuleName);
+    const string kernel = "kernel32";
 
-    [DllImport("kernel32", CharSet = CharSet.Ansi, ExactSpelling = true, SetLastError = true)]
-    internal static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
+    [DllImport(kernel, CharSet = CharSet.Unicode)] internal static extern 
+        nint GetModuleHandle([MarshalAs(UnmanagedType.LPWStr)] string moduleName);
+
+    [DllImport(kernel, CharSet = CharSet.Ansi, ExactSpelling = true)] internal static extern 
+        nint GetProcAddress(nint module, string name);
 }

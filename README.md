@@ -11,9 +11,6 @@ using OpenGL;
 
 static void Main()
 {
-   GL.InitGL();
-   // It's all, lol
-   
    GL.Enable(Enums.Cap.Blend);
 }
 ```

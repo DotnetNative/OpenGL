@@ -12,6 +12,15 @@
 	<Product />
 	<Description>OpenGL Wrapper. Works inside another process</Description>
 	<Version>1.1.1</Version>
+	<PackageReadmeFile>Pack.md</PackageReadmeFile>
+	<RepositoryUrl>https://github.com/MrYotic/NAOT-OpenGL</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Pack.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

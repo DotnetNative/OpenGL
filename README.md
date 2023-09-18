@@ -1,7 +1,7 @@
 <h1>NAOT OpenGL</h1>
 
-A OpenGL Wrapper.\
-Works with NAOT.\
+OpenGL Wrapper.\
+Works with already loaded OpenGL library.\
 NuGet - https://www.nuget.org/packages/Yotic.OpenGL/
 
 <h1>Example</h1>
@@ -9,8 +9,5 @@ NuGet - https://www.nuget.org/packages/Yotic.OpenGL/
 ```
 using OpenGL;
 
-static void Main()
-{
-   GL.Enable(Enums.Cap.Blend);
-}
+GL.Enable(Enums.Cap.Blend);
 ```

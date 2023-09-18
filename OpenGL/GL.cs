@@ -230,6 +230,7 @@ public unsafe static class GL
         fixed (uint* texturesPtr = textures)
             Interface.glGenTextures(n, texturesPtr);
     }
+    public static void GetBooleanv(PName pname, byte* @params) => Interface.glGetBooleanv(pname, @params);
     public static void GetBooleanv(PName pname, byte[] @params)
     {
         fixed (byte* @paramsPtr = @params)
@@ -240,17 +241,20 @@ public unsafe static class GL
         fixed (double* equationPtr = equation)
             Interface.glGetClipPlane(plane, equationPtr);
     }
+    public static void GetDoublev(PName pname, double* @params) => Interface.glGetDoublev(pname, @params);
     public static void GetDoublev(PName pname, double[] @params)
     {
         fixed (double* @paramsPtr = @params)
             Interface.glGetDoublev(pname, @paramsPtr);
     }
     public static Error GetError() => Interface.glGetError();
+    public static void GetFloatv(PName pname, float* @params) => Interface.glGetFloatv(pname, @params);
     public static void GetFloatv(PName pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
             Interface.glGetFloatv(pname, @paramsPtr);
     }
+    public static void GetIntegerv(PName pname, int* @params) => Interface.glGetIntegerv(pname, @params);
     public static void GetIntegerv(PName pname, int[] @params)
     {
         fixed (int* @paramsPtr = @params)

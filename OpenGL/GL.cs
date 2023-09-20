@@ -435,12 +435,22 @@ public unsafe static class GL
             Interface.glLoadMatrixd(mPtr);
     }
     public static void LoadMatrixd(double* m) => Interface.glLoadMatrixd(m);
+    public static void LoadMatrixd(Matrix mode, double* m)
+    {
+        Interface.glMatrixMode(mode);
+        Interface.glLoadMatrixd(m);
+    }
     public static void LoadMatrixf(float[] m)
     {
         fixed (float* mPtr = m)
             Interface.glLoadMatrixf(mPtr);
     }
     public static void LoadMatrixf(float* m) => Interface.glLoadMatrixf(m);
+    public static void LoadMatrixf(Matrix mode, float* m)
+    {
+        Interface.glMatrixMode(mode);
+        Interface.glLoadMatrixf(m);
+    }
     public static void LoadName(uint name) => Interface.glLoadName(name);
     public static void LogicOp(OpCode opcode) => Interface.glLogicOp(opcode);
     public static void Map1d(Map1Target target, double u1, double u2, int stride, int order, double[] points)

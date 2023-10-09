@@ -4,357 +4,48 @@ using static OpenGL.Interop;
 namespace OpenGL;
 public unsafe struct GLInterface
 {
-    nint ProcAddr(string name) => GetProcAddress(Base, name);
+    nint ProcAddr(string name) => GetProcAddress(Module, name);
 
-    public GLInterface()
+    public static string[] FunctionsNames = 
+@"glAccum glAlphaFunc glAreTexturesResident glArrayElement glBegin glBindTexture glBitmap glBlendFunc glCallList glCallLists glClear glClearAccum glClearColor
+glClearDepth glClearIndex glClearStencil glClipPlane glColor3b glColor3bv glColor3d glColor3dv glColor3f glColor3fv glColor3i glColor3iv glColor3s glColor3sv
+glColor3ub glColor3ubv glColor3ui glColor3uiv glColor3us glColor3usv glColor4b glColor4bv glColor4d glColor4dv glColor4f glColor4fv glColor4i glColor4iv glColor4s
+glColor4sv glColor4ub glColor4ubv glColor4ui glColor4uiv glColor4us glColor4usv glColorMask glColorMaterial glColorPointer glCopyPixels glCopyTexImage1D glCopyTexImage2D
+glCopyTexSubImage1D glCopyTexSubImage2D glCullFace glDeleteLists glDeleteTextures glDepthFunc glDepthMask glDepthRange glDisable glDisableClientState glDrawArrays
+glDrawBuffer glDrawElements glDrawPixels glEdgeFlag glEdgeFlagPointer glEdgeFlagv glEnable glEnableClientState glEnd glEndList glEvalCoord1d glEvalCoord1dv
+glEvalCoord1f glEvalCoord1fv glEvalCoord2d glEvalCoord2dv glEvalCoord2f glEvalCoord2fv glEvalMesh1 glEvalMesh2 glEvalPoint1 glEvalPoint2 glFeedbackBuffer glFinish
+glFlush glFogf glFogfv glFogi glFogiv glFrontFace glFrustum glGenLists glGenTextures glGetBooleanv glGetClipPlane glGetDoublev glGetError glGetFloatv glGetIntegerv
+glGetLightfv glGetLightiv glGetMapdv glGetMapfv glGetMapiv glGetMaterialfv glGetMaterialiv glGetPixelMapfv glGetPixelMapuiv glGetPixelMapusv glGetPointerv
+glGetPolygonStipple glGetString glGetTexEnvfv glGetTexEnviv glGetTexGendv glGetTexGenfv glGetTexGeniv glGetTexImage glGetTexLevelParameterfv glGetTexLevelParameteriv
+glGetTexParameterfv glGetTexParameteriv glHint glIndexMask glIndexPointer glIndexd glIndexdv glIndexf glIndexfv glIndexi glIndexiv glIndexs glIndexsv glIndexub
+glIndexubv glInitNames glInterleavedArrays glIsEnabled glIsList glIsTexture glLightModelf glLightModelfv glLightModeli glLightModeliv glLightf glLightfv glLighti
+glLightiv glLineStipple glLineWidth glListBase glLoadIdentity glLoadMatrixd glLoadMatrixf glLoadName glLogicOp glMap1d glMap1f glMap2d glMap2f glMapGrid1d
+glMapGrid1f glMapGrid2d glMapGrid2f glMaterialf glMaterialfv glMateriali glMaterialiv glMatrixMode glMultMatrixd glMultMatrixf glNewList glNormal3b glNormal3bv
+glNormal3d glNormal3dv glNormal3f glNormal3fv glNormal3i glNormal3iv glNormal3s glNormal3sv glNormalPointer glOrtho glPassThrough glPixelMapfv glPixelMapuiv
+glPixelMapusv glPixelStoref glPixelStorei glPixelTransferf glPixelTransferi glPixelZoom glPointSize glPolygonMode glPolygonOffset glPolygonStipple glPopAttrib
+glPopClientAttrib glPopMatrix glPopName glPrioritizeTextures glPushAttrib glPushClientAttrib glPushMatrix glPushName glRasterPos2d glRasterPos2dv glRasterPos2f
+glRasterPos2fv glRasterPos2i glRasterPos2iv glRasterPos2s glRasterPos2sv glRasterPos3d glRasterPos3dv glRasterPos3f glRasterPos3fv glRasterPos3i glRasterPos3iv
+glRasterPos3s glRasterPos3sv glRasterPos4d glRasterPos4dv glRasterPos4f glRasterPos4fv glRasterPos4i glRasterPos4iv glRasterPos4s glRasterPos4sv glReadBuffer
+glReadPixels glRectd glRectdv glRectf glRectfv glRecti glRectiv glRects glRectsv glRenderMode glRotated glRotatef glScaled glScalef glScissor glSelectBuffer
+glShadeModel glStencilFunc glStencilMask glStencilOp glTexCoord1d glTexCoord1dv glTexCoord1f glTexCoord1fv glTexCoord1i glTexCoord1iv glTexCoord1s glTexCoord1sv
+glTexCoord2d glTexCoord2dv glTexCoord2f glTexCoord2fv glTexCoord2i glTexCoord2iv glTexCoord2s glTexCoord2sv glTexCoord3d glTexCoord3dv glTexCoord3f glTexCoord3fv
+glTexCoord3i glTexCoord3iv glTexCoord3s glTexCoord3sv glTexCoord4d glTexCoord4dv glTexCoord4f glTexCoord4fv glTexCoord4i glTexCoord4iv glTexCoord4s glTexCoord4sv
+glTexCoordPointer glTexEnvf glTexEnvfv glTexEnvi glTexEnviv glTexGend glTexGendv glTexGenf glTexGenfv glTexGeni glTexGeniv glTexImage1D glTexImage2D glTexParameterf
+glTexParameterfv glTexParameteri glTexParameteriv glTexSubImage1D glTexSubImage2D glTranslated glTranslatef glVertex2d glVertex2dv glVertex2f glVertex2fv glVertex2i
+glVertex2iv glVertex2s glVertex2sv glVertex3d glVertex3dv glVertex3f glVertex3fv glVertex3i glVertex3iv glVertex3s glVertex3sv glVertex4d glVertex4dv glVertex4f
+glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glViewport glGenBuffers glDeleteBuffers glBindBuffer glBufferData".Replace("\r", "").Split(' ', '\n');
+    public static int FunctionsCount = FunctionsNames.Length;
+
+    public void Init(nint* ptr)
     {
-        Base = GetModuleHandle("opengl32");
-        glAccum = (delegate* unmanaged<Op, float, void>)ProcAddr("glAccum");
-        glAlphaFunc = (delegate* unmanaged<Func, float, void>)ProcAddr("glAlphaFunc");
-        glAreTexturesResident = (delegate* unmanaged<int, uint*, byte*, byte>)ProcAddr("glAreTexturesResident");
-        glArrayElement = (delegate* unmanaged<int, void>)ProcAddr("glArrayElement");
-        glBegin = (delegate* unmanaged<Mode, void>)ProcAddr("glBegin");
-        glBindTexture = (delegate* unmanaged<TexPTarget, uint, void>)ProcAddr("glBindTexture");
-        glBitmap = (delegate* unmanaged<int, int, float, float, float, float, byte*, void>)ProcAddr("glBitmap");
-        glBlendFunc = (delegate* unmanaged<Factor, Factor, void>)ProcAddr("glBlendFunc");
-        glCallList = (delegate* unmanaged<uint, void>)ProcAddr("glCallList");
-        glCallLists = (delegate* unmanaged<int, Enums.Type, void*, void>)ProcAddr("glCallLists");
-        glClear = (delegate* unmanaged<uint, void>)ProcAddr("glClear");
-        glClearAccum = (delegate* unmanaged<float, float, float, float, void>)ProcAddr("glClearAccum");
-        glClearColor = (delegate* unmanaged<float, float, float, float, void>)ProcAddr("glClearColor");
-        glClearDepth = (delegate* unmanaged<double, void>)ProcAddr("glClearDepth");
-        glClearIndex = (delegate* unmanaged<float, void>)ProcAddr("glClearIndex");
-        glClearStencil = (delegate* unmanaged<int, void>)ProcAddr("glClearStencil");
-        glClipPlane = (delegate* unmanaged<Plane, double*, void>)ProcAddr("glClipPlane");
-        glColor3b = (delegate* unmanaged<sbyte, sbyte, sbyte, void>)ProcAddr("glColor3b");
-        glColor3bv = (delegate* unmanaged<sbyte*, void>)ProcAddr("glColor3bv");
-        glColor3d = (delegate* unmanaged<double, double, double, void>)ProcAddr("glColor3d");
-        glColor3dv = (delegate* unmanaged<double*, void>)ProcAddr("glColor3dv");
-        glColor3f = (delegate* unmanaged<float, float, float, void>)ProcAddr("glColor3f");
-        glColor3fv = (delegate* unmanaged<float*, void>)ProcAddr("glColor3fv");
-        glColor3i = (delegate* unmanaged<int, int, int, void>)ProcAddr("glColor3i");
-        glColor3iv = (delegate* unmanaged<int*, void>)ProcAddr("glColor3iv");
-        glColor3s = (delegate* unmanaged<short, short, short, void>)ProcAddr("glColor3s");
-        glColor3sv = (delegate* unmanaged<short*, void>)ProcAddr("glColor3sv");
-        glColor3ub = (delegate* unmanaged<byte, byte, byte, void>)ProcAddr("glColor3ub");
-        glColor3ubv = (delegate* unmanaged<byte*, void>)ProcAddr("glColor3ubv");
-        glColor3ui = (delegate* unmanaged<uint, uint, uint, void>)ProcAddr("glColor3ui");
-        glColor3uiv = (delegate* unmanaged<uint*, void>)ProcAddr("glColor3uiv");
-        glColor3us = (delegate* unmanaged<ushort, ushort, ushort, void>)ProcAddr("glColor3us");
-        glColor3usv = (delegate* unmanaged<ushort*, void>)ProcAddr("glColor3usv");
-        glColor4b = (delegate* unmanaged<sbyte, sbyte, sbyte, sbyte, void>)ProcAddr("glColor4b");
-        glColor4bv = (delegate* unmanaged<sbyte*, void>)ProcAddr("glColor4bv");
-        glColor4d = (delegate* unmanaged<double, double, double, double, void>)ProcAddr("glColor4d");
-        glColor4dv = (delegate* unmanaged<double*, void>)ProcAddr("glColor4dv");
-        glColor4f = (delegate* unmanaged<float, float, float, float, void>)ProcAddr("glColor4f");
-        glColor4fv = (delegate* unmanaged<float*, void>)ProcAddr("glColor4fv");
-        glColor4i = (delegate* unmanaged<int, int, int, int, void>)ProcAddr("glColor4i");
-        glColor4iv = (delegate* unmanaged<int*, void>)ProcAddr("glColor4iv");
-        glColor4s = (delegate* unmanaged<short, short, short, short, void>)ProcAddr("glColor4s");
-        glColor4sv = (delegate* unmanaged<short*, void>)ProcAddr("glColor4sv");
-        glColor4ub = (delegate* unmanaged<byte, byte, byte, byte, void>)ProcAddr("glColor4ub");
-        glColor4ubv = (delegate* unmanaged<byte*, void>)ProcAddr("glColor4ubv");
-        glColor4ui = (delegate* unmanaged<uint, uint, uint, uint, void>)ProcAddr("glColor4ui");
-        glColor4uiv = (delegate* unmanaged<uint*, void>)ProcAddr("glColor4uiv");
-        glColor4us = (delegate* unmanaged<ushort, ushort, ushort, ushort, void>)ProcAddr("glColor4us");
-        glColor4usv = (delegate* unmanaged<ushort*, void>)ProcAddr("glColor4usv");
-        glColorMask = (delegate* unmanaged<byte, byte, byte, byte, void>)ProcAddr("glColorMask");
-        glColorMaterial = (delegate* unmanaged<Face, MaterialParam, void>)ProcAddr("glColorMaterial");
-        glColorPointer = (delegate* unmanaged<int, BType, int, void*, void>)ProcAddr("glColorPointer");
-        glCopyPixels = (delegate* unmanaged<int, int, int, int, CopyType, void>)ProcAddr("glCopyPixels");
-        glCopyTexImage1D = (delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, int, int, void>)ProcAddr("glCopyTexImage1D");
-        glCopyTexImage2D = (delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, int, int, int, void>)ProcAddr("glCopyTexImage2D");
-        glCopyTexSubImage1D = (delegate* unmanaged<TexPTarget, int, int, int, int, int, void>)ProcAddr("glCopyTexSubImage1D");
-        glCopyTexSubImage2D = (delegate* unmanaged<TexPTarget, int, int, int, int, int, int, int, void>)ProcAddr("glCopyTexSubImage2D");
-        glCullFace = (delegate* unmanaged<Face, void>)ProcAddr("glCullFace");
-        glDeleteLists = (delegate* unmanaged<uint, int, void>)ProcAddr("glDeleteLists");
-        glDeleteTextures = (delegate* unmanaged<int, uint*, void>)ProcAddr("glDeleteTextures");
-        glDepthFunc = (delegate* unmanaged<Func, void>)ProcAddr("glDepthFunc");
-        glDepthMask = (delegate* unmanaged<byte, void>)ProcAddr("glDepthMask");
-        glDepthRange = (delegate* unmanaged<double, double, void>)ProcAddr("glDepthRange");
-        glDisable = (delegate* unmanaged<Cap, void>)ProcAddr("glDisable");
-        glDisableClientState = (delegate* unmanaged<ArrayState, void>)ProcAddr("glDisableClientState");
-        glDrawArrays = (delegate* unmanaged<Mode, int, int, void>)ProcAddr("glDrawArrays");
-        glDrawBuffer = (delegate* unmanaged<Mode, void>)ProcAddr("glDrawBuffer");
-        glDrawElements = (delegate* unmanaged<Mode, int, BUType, void*, void>)ProcAddr("glDrawElements");
-        glDrawPixels = (delegate* unmanaged<int, int, ImageFormat, BType, void*, void>)ProcAddr("glDrawPixels");
-        glEdgeFlag = (delegate* unmanaged<byte, void>)ProcAddr("glEdgeFlag");
-        glEdgeFlagPointer = (delegate* unmanaged<int, void*, void>)ProcAddr("glEdgeFlagPointer");
-        glEdgeFlagv = (delegate* unmanaged<byte*, void>)ProcAddr("glEdgeFlagv");
-        glEnable = (delegate* unmanaged<Cap, void>)ProcAddr("glEnable");
-        glEnableClientState = (delegate* unmanaged<ArrayState, void>)ProcAddr("glEnableClientState");
-        glEnd = (delegate* unmanaged<void>)ProcAddr("glEnd");
-        glEndList = (delegate* unmanaged<void>)ProcAddr("glEndList");
-        glEvalCoord1d = (delegate* unmanaged<double, void>)ProcAddr("glEvalCoord1d");
-        glEvalCoord1dv = (delegate* unmanaged<double*, void>)ProcAddr("glEvalCoord1dv");
-        glEvalCoord1f = (delegate* unmanaged<float, void>)ProcAddr("glEvalCoord1f");
-        glEvalCoord1fv = (delegate* unmanaged<float*, void>)ProcAddr("glEvalCoord1fv");
-        glEvalCoord2d = (delegate* unmanaged<double, double, void>)ProcAddr("glEvalCoord2d");
-        glEvalCoord2dv = (delegate* unmanaged<double*, void>)ProcAddr("glEvalCoord2dv");
-        glEvalCoord2f = (delegate* unmanaged<float, float, void>)ProcAddr("glEvalCoord2f");
-        glEvalCoord2fv = (delegate* unmanaged<float*, void>)ProcAddr("glEvalCoord2fv");
-        glEvalMesh1 = (delegate* unmanaged<EMesh, int, int, void>)ProcAddr("glEvalMesh1");
-        glEvalMesh2 = (delegate* unmanaged<Mesh, int, int, int, int, void>)ProcAddr("glEvalMesh2");
-        glEvalPoint1 = (delegate* unmanaged<int, void>)ProcAddr("glEvalPoint1");
-        glEvalPoint2 = (delegate* unmanaged<int, int, void>)ProcAddr("glEvalPoint2");
-        glFeedbackBuffer = (delegate* unmanaged<int, Vertex, float*, void>)ProcAddr("glFeedbackBuffer");
-        glFinish = (delegate* unmanaged<void>)ProcAddr("glFinish");
-        glFlush = (delegate* unmanaged<void>)ProcAddr("glFlush");
-        glFogf = (delegate* unmanaged<Fog, float, void>)ProcAddr("glFogf");
-        glFogfv = (delegate* unmanaged<Fog, float*, void>)ProcAddr("glFogfv");
-        glFogi = (delegate* unmanaged<Fog, int, void>)ProcAddr("glFogi");
-        glFogiv = (delegate* unmanaged<Fog, int*, void>)ProcAddr("glFogiv");
-        glFrontFace = (delegate* unmanaged<FaceMode, void>)ProcAddr("glFrontFace");
-        glFrustum = (delegate* unmanaged<double, double, double, double, double, double, void>)ProcAddr("glFrustum");
-        glGenLists = (delegate* unmanaged<int, uint>)ProcAddr("glGenLists");
-        glGenTextures = (delegate* unmanaged<int, uint*, void>)ProcAddr("glGenTextures");
-        glGetBooleanv = (delegate* unmanaged<PName, byte*, void>)ProcAddr("glGetBooleanv");
-        glGetClipPlane = (delegate* unmanaged<Plane, double*, void>)ProcAddr("glGetClipPlane");
-        glGetDoublev = (delegate* unmanaged<PName, double*, void>)ProcAddr("glGetDoublev");
-        glGetError = (delegate* unmanaged<Error>)ProcAddr("glGetError");
-        glGetFloatv = (delegate* unmanaged<PName, float*, void>)ProcAddr("glGetFloatv");
-        glGetIntegerv = (delegate* unmanaged<PName, int*, void>)ProcAddr("glGetIntegerv");
-        glGetLightfv = (delegate* unmanaged<Light, LightN, float*, void>)ProcAddr("glGetLightfv");
-        glGetLightiv = (delegate* unmanaged<Light, LightN, int*, void>)ProcAddr("glGetLightiv");
-        glGetMapdv = (delegate* unmanaged<MapTarget, Query, double*, void>)ProcAddr("glGetMapdv");
-        glGetMapfv = (delegate* unmanaged<MapTarget, Query, float*, void>)ProcAddr("glGetMapfv");
-        glGetMapiv = (delegate* unmanaged<MapTarget, Query, int*, void>)ProcAddr("glGetMapiv");
-        glGetMaterialfv = (delegate* unmanaged<Side, MaterialParam, float*, void>)ProcAddr("glGetMaterialfv");
-        glGetMaterialiv = (delegate* unmanaged<Side, MaterialParam, int*, void>)ProcAddr("glGetMaterialiv");
-        glGetPixelMapfv = (delegate* unmanaged<Map, float*, void>)ProcAddr("glGetPixelMapfv");
-        glGetPixelMapuiv = (delegate* unmanaged<Map, uint*, void>)ProcAddr("glGetPixelMapuiv");
-        glGetPixelMapusv = (delegate* unmanaged<Map, ushort*, void>)ProcAddr("glGetPixelMapusv");
-        glGetPointerv = (delegate* unmanaged<PNamePtr, void**, void>)ProcAddr("glGetPointerv");
-        glGetPolygonStipple = (delegate* unmanaged<byte*, void>)ProcAddr("glGetPolygonStipple");
-        glGetString = (delegate* unmanaged<StringName, byte*>)ProcAddr("glGetString");
-        glGetTexEnvfv = (delegate* unmanaged<int, TexEnvN, float*, void>)ProcAddr("glGetTexEnvfv");
-        glGetTexEnviv = (delegate* unmanaged<int, TexEnvN, int*, void>)ProcAddr("glGetTexEnviv");
-        glGetTexGendv = (delegate* unmanaged<Coords, TexGenN, double*, void>)ProcAddr("glGetTexGendv");
-        glGetTexGenfv = (delegate* unmanaged<Coords, TexGenN, float*, void>)ProcAddr("glGetTexGenfv");
-        glGetTexGeniv = (delegate* unmanaged<Coords, TexGenN, int*, void>)ProcAddr("glGetTexGeniv");
-        glGetTexImage = (delegate* unmanaged<TexTarget, int, Image, BType, void*, void>)ProcAddr("glGetTexImage");
-        glGetTexLevelParameterfv = (delegate* unmanaged<TexPTarget, int, TexN, float*, void>)ProcAddr("glGetTexLevelParameterfv");
-        glGetTexLevelParameteriv = (delegate* unmanaged<TexPTarget, int, TexN, int*, void>)ProcAddr("glGetTexLevelParameteriv");
-        glGetTexParameterfv = (delegate* unmanaged<TexTarget, TexNV, float*, void>)ProcAddr("glGetTexParameterfv");
-        glGetTexParameteriv = (delegate* unmanaged<TexTarget, TexNV, int*, void>)ProcAddr("glGetTexParameteriv");
-        glHint = (delegate* unmanaged<Hint, Calc, void>)ProcAddr("glHint");
-        glIndexMask = (delegate* unmanaged<uint, void>)ProcAddr("glIndexMask");
-        glIndexPointer = (delegate* unmanaged<TexType, int, void*, void>)ProcAddr("glIndexPointer");
-        glIndexd = (delegate* unmanaged<double, void>)ProcAddr("glIndexd");
-        glIndexdv = (delegate* unmanaged<double*, void>)ProcAddr("glIndexdv");
-        glIndexf = (delegate* unmanaged<float, void>)ProcAddr("glIndexf");
-        glIndexfv = (delegate* unmanaged<float*, void>)ProcAddr("glIndexfv");
-        glIndexi = (delegate* unmanaged<int, void>)ProcAddr("glIndexi");
-        glIndexiv = (delegate* unmanaged<int*, void>)ProcAddr("glIndexiv");
-        glIndexs = (delegate* unmanaged<short, void>)ProcAddr("glIndexs");
-        glIndexsv = (delegate* unmanaged<short*, void>)ProcAddr("glIndexsv");
-        glIndexub = (delegate* unmanaged<byte, void>)ProcAddr("glIndexub");
-        glIndexubv = (delegate* unmanaged<byte*, void>)ProcAddr("glIndexubv");
-        glInitNames = (delegate* unmanaged<void>)ProcAddr("glInitNames");
-        glInterleavedArrays = (delegate* unmanaged<ArrayFormat, int, void*, void>)ProcAddr("glInterleavedArrays");
-        glIsEnabled = (delegate* unmanaged<Cap, byte>)ProcAddr("glIsEnabled");
-        glIsList = (delegate* unmanaged<uint, byte>)ProcAddr("glIsList");
-        glIsTexture = (delegate* unmanaged<uint, byte>)ProcAddr("glIsTexture");
-        glLightModelf = (delegate* unmanaged<LightModel, float, void>)ProcAddr("glLightModelf");
-        glLightModelfv = (delegate* unmanaged<LightModel, float*, void>)ProcAddr("glLightModelfv");
-        glLightModeli = (delegate* unmanaged<LightModel, int, void>)ProcAddr("glLightModeli");
-        glLightModeliv = (delegate* unmanaged<LightModel, int*, void>)ProcAddr("glLightModeliv");
-        glLightf = (delegate* unmanaged<Light, LightN, float, void>)ProcAddr("glLightf");
-        glLightfv = (delegate* unmanaged<Light, LightN, float*, void>)ProcAddr("glLightfv");
-        glLighti = (delegate* unmanaged<Light, LightN, int, void>)ProcAddr("glLighti");
-        glLightiv = (delegate* unmanaged<Light, LightN, int*, void>)ProcAddr("glLightiv");
-        glLineStipple = (delegate* unmanaged<int, ushort, void>)ProcAddr("glLineStipple");
-        glLineWidth = (delegate* unmanaged<float, void>)ProcAddr("glLineWidth");
-        glListBase = (delegate* unmanaged<uint, void>)ProcAddr("glListBase");
-        glLoadIdentity = (delegate* unmanaged<void>)ProcAddr("glLoadIdentity");
-        glLoadMatrixd = (delegate* unmanaged<double*, void>)ProcAddr("glLoadMatrixd");
-        glLoadMatrixf = (delegate* unmanaged<float*, void>)ProcAddr("glLoadMatrixf");
-        glLoadName = (delegate* unmanaged<uint, void>)ProcAddr("glLoadName");
-        glLogicOp = (delegate* unmanaged<OpCode, void>)ProcAddr("glLogicOp");
-        glMap1d = (delegate* unmanaged<Map1Target, double, double, int, int, double*, void>)ProcAddr("glMap1d");
-        glMap1f = (delegate* unmanaged<Map1Target, float, float, int, int, float*, void>)ProcAddr("glMap1f");
-        glMap2d = (delegate* unmanaged<Map1Target, double, double, int, int, double, double, int, int, double*, void>)ProcAddr("glMap2d");
-        glMap2f = (delegate* unmanaged<Map1Target, float, float, int, int, float, float, int, int, float*, void>)ProcAddr("glMap2f");
-        glMapGrid1d = (delegate* unmanaged<int, double, double, void>)ProcAddr("glMapGrid1d");
-        glMapGrid1f = (delegate* unmanaged<int, float, float, void>)ProcAddr("glMapGrid1f");
-        glMapGrid2d = (delegate* unmanaged<int, double, double, int, double, double, void>)ProcAddr("glMapGrid2d");
-        glMapGrid2f = (delegate* unmanaged<int, float, float, int, float, float, void>)ProcAddr("glMapGrid2f");
-        glMaterialf = (delegate* unmanaged<Side, int, float, void>)ProcAddr("glMaterialf");
-        glMaterialfv = (delegate* unmanaged<Side, MaterialParam, float*, void>)ProcAddr("glMaterialfv");
-        glMateriali = (delegate* unmanaged<Side, MaterialParam, int, void>)ProcAddr("glMateriali");
-        glMaterialiv = (delegate* unmanaged<Side, MaterialParam, int*, void>)ProcAddr("glMaterialiv");
-        glMatrixMode = (delegate* unmanaged<Matrix, void>)ProcAddr("glMatrixMode");
-        glMultMatrixd = (delegate* unmanaged<double*, void>)ProcAddr("glMultMatrixd");
-        glMultMatrixf = (delegate* unmanaged<float*, void>)ProcAddr("glMultMatrixf");
-        glNewList = (delegate* unmanaged<uint, Compile, void>)ProcAddr("glNewList");
-        glNormal3b = (delegate* unmanaged<sbyte, sbyte, sbyte, void>)ProcAddr("glNormal3b");
-        glNormal3bv = (delegate* unmanaged<sbyte*, void>)ProcAddr("glNormal3bv");
-        glNormal3d = (delegate* unmanaged<double, double, double, void>)ProcAddr("glNormal3d");
-        glNormal3dv = (delegate* unmanaged<double*, void>)ProcAddr("glNormal3dv");
-        glNormal3f = (delegate* unmanaged<float, float, float, void>)ProcAddr("glNormal3f");
-        glNormal3fv = (delegate* unmanaged<float*, void>)ProcAddr("glNormal3fv");
-        glNormal3i = (delegate* unmanaged<int, int, int, void>)ProcAddr("glNormal3i");
-        glNormal3iv = (delegate* unmanaged<int*, void>)ProcAddr("glNormal3iv");
-        glNormal3s = (delegate* unmanaged<short, short, short, void>)ProcAddr("glNormal3s");
-        glNormal3sv = (delegate* unmanaged<short*, void>)ProcAddr("glNormal3sv");
-        glNormalPointer = (delegate* unmanaged<PtrType, int, void*, void>)ProcAddr("glNormalPointer");
-        glOrtho = (delegate* unmanaged<double, double, double, double, double, double, void>)ProcAddr("glOrtho");
-        glPassThrough = (delegate* unmanaged<float, void>)ProcAddr("glPassThrough");
-        glPixelMapfv = (delegate* unmanaged<Map, int, float*, void>)ProcAddr("glPixelMapfv");
-        glPixelMapuiv = (delegate* unmanaged<Map, int, uint*, void>)ProcAddr("glPixelMapuiv");
-        glPixelMapusv = (delegate* unmanaged<Map, int, ushort*, void>)ProcAddr("glPixelMapusv");
-        glPixelStoref = (delegate* unmanaged<StoreN, float, void>)ProcAddr("glPixelStoref");
-        glPixelStorei = (delegate* unmanaged<StoreN, int, void>)ProcAddr("glPixelStorei");
-        glPixelTransferf = (delegate* unmanaged<TransferN, float, void>)ProcAddr("glPixelTransferf");
-        glPixelTransferi = (delegate* unmanaged<TransferN, int, void>)ProcAddr("glPixelTransferi");
-        glPixelZoom = (delegate* unmanaged<float, float, void>)ProcAddr("glPixelZoom");
-        glPointSize = (delegate* unmanaged<float, void>)ProcAddr("glPointSize");
-        glPolygonMode = (delegate* unmanaged<MaterialFace, Mesh, void>)ProcAddr("glPolygonMode");
-        glPolygonOffset = (delegate* unmanaged<float, float, void>)ProcAddr("glPolygonOffset");
-        glPolygonStipple = (delegate* unmanaged<byte*, void>)ProcAddr("glPolygonStipple");
-        glPopAttrib = (delegate* unmanaged<void>)ProcAddr("glPopAttrib");
-        glPopClientAttrib = (delegate* unmanaged<void>)ProcAddr("glPopClientAttrib");
-        glPopMatrix = (delegate* unmanaged<void>)ProcAddr("glPopMatrix");
-        glPopName = (delegate* unmanaged<void>)ProcAddr("glPopName");
-        glPrioritizeTextures = (delegate* unmanaged<int, uint*, float*, void>)ProcAddr("glPrioritizeTextures");
-        glPushAttrib = (delegate* unmanaged<uint, void>)ProcAddr("glPushAttrib");
-        glPushClientAttrib = (delegate* unmanaged<uint, void>)ProcAddr("glPushClientAttrib");
-        glPushMatrix = (delegate* unmanaged<void>)ProcAddr("glPushMatrix");
-        glPushName = (delegate* unmanaged<uint, void>)ProcAddr("glPushName");
-        glRasterPos2d = (delegate* unmanaged<double, double, void>)ProcAddr("glRasterPos2d");
-        glRasterPos2dv = (delegate* unmanaged<double*, void>)ProcAddr("glRasterPos2dv");
-        glRasterPos2f = (delegate* unmanaged<float, float, void>)ProcAddr("glRasterPos2f");
-        glRasterPos2fv = (delegate* unmanaged<float*, void>)ProcAddr("glRasterPos2fv");
-        glRasterPos2i = (delegate* unmanaged<int, int, void>)ProcAddr("glRasterPos2i");
-        glRasterPos2iv = (delegate* unmanaged<int*, void>)ProcAddr("glRasterPos2iv");
-        glRasterPos2s = (delegate* unmanaged<short, short, void>)ProcAddr("glRasterPos2s");
-        glRasterPos2sv = (delegate* unmanaged<short*, void>)ProcAddr("glRasterPos2sv");
-        glRasterPos3d = (delegate* unmanaged<double, double, double, void>)ProcAddr("glRasterPos3d");
-        glRasterPos3dv = (delegate* unmanaged<double*, void>)ProcAddr("glRasterPos3dv");
-        glRasterPos3f = (delegate* unmanaged<float, float, float, void>)ProcAddr("glRasterPos3f");
-        glRasterPos3fv = (delegate* unmanaged<float*, void>)ProcAddr("glRasterPos3fv");
-        glRasterPos3i = (delegate* unmanaged<int, int, int, void>)ProcAddr("glRasterPos3i");
-        glRasterPos3iv = (delegate* unmanaged<int*, void>)ProcAddr("glRasterPos3iv");
-        glRasterPos3s = (delegate* unmanaged<short, short, short, void>)ProcAddr("glRasterPos3s");
-        glRasterPos3sv = (delegate* unmanaged<short*, void>)ProcAddr("glRasterPos3sv");
-        glRasterPos4d = (delegate* unmanaged<double, double, double, double, void>)ProcAddr("glRasterPos4d");
-        glRasterPos4dv = (delegate* unmanaged<double*, void>)ProcAddr("glRasterPos4dv");
-        glRasterPos4f = (delegate* unmanaged<float, float, float, float, void>)ProcAddr("glRasterPos4f");
-        glRasterPos4fv = (delegate* unmanaged<float*, void>)ProcAddr("glRasterPos4fv");
-        glRasterPos4i = (delegate* unmanaged<int, int, int, int, void>)ProcAddr("glRasterPos4i");
-        glRasterPos4iv = (delegate* unmanaged<int*, void>)ProcAddr("glRasterPos4iv");
-        glRasterPos4s = (delegate* unmanaged<short, short, short, short, void>)ProcAddr("glRasterPos4s");
-        glRasterPos4sv = (delegate* unmanaged<short*, void>)ProcAddr("glRasterPos4sv");
-        glReadBuffer = (delegate* unmanaged<Buf, void>)ProcAddr("glReadBuffer");
-        glReadPixels = (delegate* unmanaged<int, int, int, int, Image, ReadType, void*, void>)ProcAddr("glReadPixels");
-        glRectd = (delegate* unmanaged<double, double, double, double, void>)ProcAddr("glRectd");
-        glRectdv = (delegate* unmanaged<double*, double*, void>)ProcAddr("glRectdv");
-        glRectf = (delegate* unmanaged<float, float, float, float, void>)ProcAddr("glRectf");
-        glRectfv = (delegate* unmanaged<float*, float*, void>)ProcAddr("glRectfv");
-        glRecti = (delegate* unmanaged<int, int, int, int, void>)ProcAddr("glRecti");
-        glRectiv = (delegate* unmanaged<int*, int*, void>)ProcAddr("glRectiv");
-        glRects = (delegate* unmanaged<short, short, short, short, void>)ProcAddr("glRects");
-        glRectsv = (delegate* unmanaged<short*, short*, void>)ProcAddr("glRectsv");
-        glRenderMode = (delegate* unmanaged<Render, int>)ProcAddr("glRenderMode");
-        glRotated = (delegate* unmanaged<double, double, double, double, void>)ProcAddr("glRotated");
-        glRotatef = (delegate* unmanaged<float, float, float, float, void>)ProcAddr("glRotatef");
-        glScaled = (delegate* unmanaged<double, double, double, void>)ProcAddr("glScaled");
-        glScalef = (delegate* unmanaged<float, float, float, void>)ProcAddr("glScalef");
-        glScissor = (delegate* unmanaged<int, int, int, int, void>)ProcAddr("glScissor");
-        glSelectBuffer = (delegate* unmanaged<int, uint*, void>)ProcAddr("glSelectBuffer");
-        glShadeModel = (delegate* unmanaged<Fill, void>)ProcAddr("glShadeModel");
-        glStencilFunc = (delegate* unmanaged<Func, int, uint, void>)ProcAddr("glStencilFunc");
-        glStencilMask = (delegate* unmanaged<uint, void>)ProcAddr("glStencilMask");
-        glStencilOp = (delegate* unmanaged<Fail, Fail, Fail, void>)ProcAddr("glStencilOp");
-        glTexCoord1d = (delegate* unmanaged<double, void>)ProcAddr("glTexCoord1d");
-        glTexCoord1dv = (delegate* unmanaged<double*, void>)ProcAddr("glTexCoord1dv");
-        glTexCoord1f = (delegate* unmanaged<float, void>)ProcAddr("glTexCoord1f");
-        glTexCoord1fv = (delegate* unmanaged<float*, void>)ProcAddr("glTexCoord1fv");
-        glTexCoord1i = (delegate* unmanaged<int, void>)ProcAddr("glTexCoord1i");
-        glTexCoord1iv = (delegate* unmanaged<int*, void>)ProcAddr("glTexCoord1iv");
-        glTexCoord1s = (delegate* unmanaged<short, void>)ProcAddr("glTexCoord1s");
-        glTexCoord1sv = (delegate* unmanaged<short*, void>)ProcAddr("glTexCoord1sv");
-        glTexCoord2d = (delegate* unmanaged<double, double, void>)ProcAddr("glTexCoord2d");
-        glTexCoord2dv = (delegate* unmanaged<double*, void>)ProcAddr("glTexCoord2dv");
-        glTexCoord2f = (delegate* unmanaged<float, float, void>)ProcAddr("glTexCoord2f");
-        glTexCoord2fv = (delegate* unmanaged<float*, void>)ProcAddr("glTexCoord2fv");
-        glTexCoord2i = (delegate* unmanaged<int, int, void>)ProcAddr("glTexCoord2i");
-        glTexCoord2iv = (delegate* unmanaged<int*, void>)ProcAddr("glTexCoord2iv");
-        glTexCoord2s = (delegate* unmanaged<short, short, void>)ProcAddr("glTexCoord2s");
-        glTexCoord2sv = (delegate* unmanaged<short*, void>)ProcAddr("glTexCoord2sv");
-        glTexCoord3d = (delegate* unmanaged<double, double, double, void>)ProcAddr("glTexCoord3d");
-        glTexCoord3dv = (delegate* unmanaged<double*, void>)ProcAddr("glTexCoord3dv");
-        glTexCoord3f = (delegate* unmanaged<float, float, float, void>)ProcAddr("glTexCoord3f");
-        glTexCoord3fv = (delegate* unmanaged<float*, void>)ProcAddr("glTexCoord3fv");
-        glTexCoord3i = (delegate* unmanaged<int, int, int, void>)ProcAddr("glTexCoord3i");
-        glTexCoord3iv = (delegate* unmanaged<int*, void>)ProcAddr("glTexCoord3iv");
-        glTexCoord3s = (delegate* unmanaged<short, short, short, void>)ProcAddr("glTexCoord3s");
-        glTexCoord3sv = (delegate* unmanaged<short*, void>)ProcAddr("glTexCoord3sv");
-        glTexCoord4d = (delegate* unmanaged<double, double, double, double, void>)ProcAddr("glTexCoord4d");
-        glTexCoord4dv = (delegate* unmanaged<double*, void>)ProcAddr("glTexCoord4dv");
-        glTexCoord4f = (delegate* unmanaged<float, float, float, float, void>)ProcAddr("glTexCoord4f");
-        glTexCoord4fv = (delegate* unmanaged<float*, void>)ProcAddr("glTexCoord4fv");
-        glTexCoord4i = (delegate* unmanaged<int, int, int, int, void>)ProcAddr("glTexCoord4i");
-        glTexCoord4iv = (delegate* unmanaged<int*, void>)ProcAddr("glTexCoord4iv");
-        glTexCoord4s = (delegate* unmanaged<short, short, short, short, void>)ProcAddr("glTexCoord4s");
-        glTexCoord4sv = (delegate* unmanaged<short*, void>)ProcAddr("glTexCoord4sv");
-        glTexCoordPointer = (delegate* unmanaged<int, TexType, int, void*, void>)ProcAddr("glTexCoordPointer");
-        glTexEnvf = (delegate* unmanaged<int, TexEnvN, float, void>)ProcAddr("glTexEnvf");
-        glTexEnvfv = (delegate* unmanaged<int, TexEnvN, float*, void>)ProcAddr("glTexEnvfv");
-        glTexEnvi = (delegate* unmanaged<int, TexEnvN, int, void>)ProcAddr("glTexEnvi");
-        glTexEnviv = (delegate* unmanaged<int, TexEnvN, int*, void>)ProcAddr("glTexEnviv");
-        glTexGend = (delegate* unmanaged<Coords, TexGen, double, void>)ProcAddr("glTexGend");
-        glTexGendv = (delegate* unmanaged<Coords, TexGen, double*, void>)ProcAddr("glTexGendv");
-        glTexGenf = (delegate* unmanaged<Coords, TexGen, float, void>)ProcAddr("glTexGenf");
-        glTexGenfv = (delegate* unmanaged<Coords, TexGen, float*, void>)ProcAddr("glTexGenfv");
-        glTexGeni = (delegate* unmanaged<Coords, TexGen, int, void>)ProcAddr("glTexGeni");
-        glTexGeniv = (delegate* unmanaged<Coords, TexGen, int*, void>)ProcAddr("glTexGeniv");
-        glTexImage1D = (delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, ImageFormat, ImageType, void*, void>)ProcAddr("glTexImage1D");
-        glTexImage2D = (delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, int, ImageFormat, ImageType, void*, void>)ProcAddr("glTexImage2D");
-        glTexParameterf = (delegate* unmanaged<TexTarget, TexNV2, float, void>)ProcAddr("glTexParameterf");
-        glTexParameterfv = (delegate* unmanaged<TexTarget, TexNV2, float*, void>)ProcAddr("glTexParameterfv");
-        glTexParameteri = (delegate* unmanaged<TexTarget, TexNV2, int, void>)ProcAddr("glTexParameteri");
-        glTexParameteriv = (delegate* unmanaged<TexTarget, TexNV2, int*, void>)ProcAddr("glTexParameteriv");
-        glTexSubImage1D = (delegate* unmanaged<int, int, int, int, ImageFormat, ImageType, void*, void>)ProcAddr("glTexSubImage1D");
-        glTexSubImage2D = (delegate* unmanaged<int, int, int, int, int, int, ImageFormat, ImageType, void*, void>)ProcAddr("glTexSubImage2D");
-        glTranslated = (delegate* unmanaged<double, double, double, void>)ProcAddr("glTranslated");
-        glTranslatef = (delegate* unmanaged<float, float, float, void>)ProcAddr("glTranslatef");
-        glVertex2d = (delegate* unmanaged<double, double, void>)ProcAddr("glVertex2d");
-        glVertex2dv = (delegate* unmanaged<double*, void>)ProcAddr("glVertex2dv");
-        glVertex2f = (delegate* unmanaged<float, float, void>)ProcAddr("glVertex2f");
-        glVertex2fv = (delegate* unmanaged<float*, void>)ProcAddr("glVertex2fv");
-        glVertex2i = (delegate* unmanaged<int, int, void>)ProcAddr("glVertex2i");
-        glVertex2iv = (delegate* unmanaged<int*, void>)ProcAddr("glVertex2iv");
-        glVertex2s = (delegate* unmanaged<short, short, void>)ProcAddr("glVertex2s");
-        glVertex2sv = (delegate* unmanaged<short*, void>)ProcAddr("glVertex2sv");
-        glVertex3d = (delegate* unmanaged<double, double, double, void>)ProcAddr("glVertex3d");
-        glVertex3dv = (delegate* unmanaged<double*, void>)ProcAddr("glVertex3dv");
-        glVertex3f = (delegate* unmanaged<float, float, float, void>)ProcAddr("glVertex3f");
-        glVertex3fv = (delegate* unmanaged<float*, void>)ProcAddr("glVertex3fv");
-        glVertex3i = (delegate* unmanaged<int, int, int, void>)ProcAddr("glVertex3i");
-        glVertex3iv = (delegate* unmanaged<int*, void>)ProcAddr("glVertex3iv");
-        glVertex3s = (delegate* unmanaged<short, short, short, void>)ProcAddr("glVertex3s");
-        glVertex3sv = (delegate* unmanaged<short*, void>)ProcAddr("glVertex3sv");
-        glVertex4d = (delegate* unmanaged<double, double, double, double, void>)ProcAddr("glVertex4d");
-        glVertex4dv = (delegate* unmanaged<double*, void>)ProcAddr("glVertex4dv");
-        glVertex4f = (delegate* unmanaged<float, float, float, float, void>)ProcAddr("glVertex4f");
-        glVertex4fv = (delegate* unmanaged<float*, void>)ProcAddr("glVertex4fv");
-        glVertex4i = (delegate* unmanaged<int, int, int, int, void>)ProcAddr("glVertex4i");
-        glVertex4iv = (delegate* unmanaged<int*, void>)ProcAddr("glVertex4iv");
-        glVertex4s = (delegate* unmanaged<short, short, short, short, void>)ProcAddr("glVertex4s");
-        glVertex4sv = (delegate* unmanaged<short*, void>)ProcAddr("glVertex4sv");
-        glVertexPointer = (delegate* unmanaged<int, TexType, int, void*, void>)ProcAddr("glVertexPointer");
-        glViewport = (delegate* unmanaged<int, int, int, int, void>)ProcAddr("glViewport");
+        Module = GetModuleHandle("opengl32");
+        if (Module == 0)
+            return;
 
-        /* After OpenGL 1.1 */
-
-        glGenBuffers = (delegate* unmanaged<int, uint*, void>)ProcAddr("glGenBuffers");
-        glDeleteBuffers = (delegate* unmanaged<int, uint*, void>)ProcAddr("glDeleteBuffers");
-        glBindBuffer = (delegate* unmanaged<Enums.Buffer, uint, void>)ProcAddr("glBindBuffers");
-        glBufferData = (delegate* unmanaged<Enums.Buffer, int, void*, BufferUsage, void>)ProcAddr("glBufferData");
+        for (int i = 0; i < FunctionsCount; i++)
+            ptr[i] = ProcAddr(FunctionsNames[i]);
     }
 
-    public nint Base;
     public delegate* unmanaged<Op, float, void> glAccum;
     public delegate* unmanaged<Func, float, void> glAlphaFunc;
     public delegate* unmanaged<int, uint*, byte*, byte> glAreTexturesResident;
@@ -697,4 +388,6 @@ public unsafe struct GLInterface
     public delegate* unmanaged<int, uint*, void> glDeleteBuffers;
     public delegate* unmanaged<Enums.Buffer, uint, void> glBindBuffer;
     public delegate* unmanaged<Enums.Buffer, int, void*, BufferUsage, void> glBufferData;
+
+    public nint Module;
 }

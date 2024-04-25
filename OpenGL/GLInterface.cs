@@ -6,7 +6,7 @@ public unsafe struct GLInterface
 {
     nint ProcAddr(string name) => GetProcAddress(Module, name);
 
-    public static string[] FunctionsNames = 
+    public static string[] FunctionsNames =
 @"glAccum glAlphaFunc glAreTexturesResident glArrayElement glBegin glBindTexture glBitmap glBlendFunc glCallList glCallLists glClear glClearAccum glClearColor
 glClearDepth glClearIndex glClearStencil glClipPlane glColor3b glColor3bv glColor3d glColor3dv glColor3f glColor3fv glColor3i glColor3iv glColor3s glColor3sv
 glColor3ub glColor3ubv glColor3ui glColor3uiv glColor3us glColor3usv glColor4b glColor4bv glColor4d glColor4dv glColor4f glColor4fv glColor4i glColor4iv glColor4s
@@ -55,7 +55,7 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<int, int, float, float, float, float, byte*, void> glBitmap;
     public delegate* unmanaged<Factor, Factor, void> glBlendFunc;
     public delegate* unmanaged<uint, void> glCallList;
-    public delegate* unmanaged<int, Enums.Type, void*, void> glCallLists;
+    public delegate* unmanaged<int, Enums.Type, pointer, void> glCallLists;
     public delegate* unmanaged<uint, void> glClear;
     public delegate* unmanaged<float, float, float, float, void> glClearAccum;
     public delegate* unmanaged<float, float, float, float, void> glClearColor;
@@ -97,7 +97,7 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<ushort*, void> glColor4usv;
     public delegate* unmanaged<byte, byte, byte, byte, void> glColorMask;
     public delegate* unmanaged<Face, MaterialParam, void> glColorMaterial;
-    public delegate* unmanaged<int, BType, int, void*, void> glColorPointer;
+    public delegate* unmanaged<int, BType, int, pointer, void> glColorPointer;
     public delegate* unmanaged<int, int, int, int, CopyType, void> glCopyPixels;
     public delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, int, int, void> glCopyTexImage1D;
     public delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, int, int, int, void> glCopyTexImage2D;
@@ -113,10 +113,10 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<ArrayState, void> glDisableClientState;
     public delegate* unmanaged<Mode, int, int, void> glDrawArrays;
     public delegate* unmanaged<Mode, void> glDrawBuffer;
-    public delegate* unmanaged<Mode, int, BUType, void*, void> glDrawElements;
-    public delegate* unmanaged<int, int, ImageFormat, BType, void*, void> glDrawPixels;
+    public delegate* unmanaged<Mode, int, BUType, pointer, void> glDrawElements;
+    public delegate* unmanaged<int, int, ImageFormat, BType, pointer, void> glDrawPixels;
     public delegate* unmanaged<byte, void> glEdgeFlag;
-    public delegate* unmanaged<int, void*, void> glEdgeFlagPointer;
+    public delegate* unmanaged<int, pointer, void> glEdgeFlagPointer;
     public delegate* unmanaged<byte*, void> glEdgeFlagv;
     public delegate* unmanaged<Cap, void> glEnable;
     public delegate* unmanaged<ArrayState, void> glEnableClientState;
@@ -161,7 +161,7 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<Map, float*, void> glGetPixelMapfv;
     public delegate* unmanaged<Map, uint*, void> glGetPixelMapuiv;
     public delegate* unmanaged<Map, ushort*, void> glGetPixelMapusv;
-    public delegate* unmanaged<PNamePtr, void**, void> glGetPointerv;
+    public delegate* unmanaged<PNamePtr, pointer*, void> glGetPointerv;
     public delegate* unmanaged<byte*, void> glGetPolygonStipple;
     public delegate* unmanaged<StringName, byte*> glGetString;
     public delegate* unmanaged<int, TexEnvN, float*, void> glGetTexEnvfv;
@@ -169,14 +169,14 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<Coords, TexGenN, double*, void> glGetTexGendv;
     public delegate* unmanaged<Coords, TexGenN, float*, void> glGetTexGenfv;
     public delegate* unmanaged<Coords, TexGenN, int*, void> glGetTexGeniv;
-    public delegate* unmanaged<TexTarget, int, Image, BType, void*, void> glGetTexImage;
+    public delegate* unmanaged<TexTarget, int, Image, BType, pointer, void> glGetTexImage;
     public delegate* unmanaged<TexPTarget, int, TexN, float*, void> glGetTexLevelParameterfv;
     public delegate* unmanaged<TexPTarget, int, TexN, int*, void> glGetTexLevelParameteriv;
     public delegate* unmanaged<TexTarget, TexNV, float*, void> glGetTexParameterfv;
     public delegate* unmanaged<TexTarget, TexNV, int*, void> glGetTexParameteriv;
     public delegate* unmanaged<Hint, Calc, void> glHint;
     public delegate* unmanaged<uint, void> glIndexMask;
-    public delegate* unmanaged<TexType, int, void*, void> glIndexPointer;
+    public delegate* unmanaged<TexType, int, pointer, void> glIndexPointer;
     public delegate* unmanaged<double, void> glIndexd;
     public delegate* unmanaged<double*, void> glIndexdv;
     public delegate* unmanaged<float, void> glIndexf;
@@ -188,7 +188,7 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<byte, void> glIndexub;
     public delegate* unmanaged<byte*, void> glIndexubv;
     public delegate* unmanaged<void> glInitNames;
-    public delegate* unmanaged<ArrayFormat, int, void*, void> glInterleavedArrays;
+    public delegate* unmanaged<ArrayFormat, int, pointer, void> glInterleavedArrays;
     public delegate* unmanaged<Cap, byte> glIsEnabled;
     public delegate* unmanaged<uint, byte> glIsList;
     public delegate* unmanaged<uint, byte> glIsTexture;
@@ -234,7 +234,7 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<int*, void> glNormal3iv;
     public delegate* unmanaged<short, short, short, void> glNormal3s;
     public delegate* unmanaged<short*, void> glNormal3sv;
-    public delegate* unmanaged<PtrType, int, void*, void> glNormalPointer;
+    public delegate* unmanaged<PtrType, int, pointer, void> glNormalPointer;
     public delegate* unmanaged<double, double, double, double, double, double, void> glOrtho;
     public delegate* unmanaged<float, void> glPassThrough;
     public delegate* unmanaged<Map, int, float*, void> glPixelMapfv;
@@ -283,7 +283,7 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<short, short, short, short, void> glRasterPos4s;
     public delegate* unmanaged<short*, void> glRasterPos4sv;
     public delegate* unmanaged<Buf, void> glReadBuffer;
-    public delegate* unmanaged<int, int, int, int, Image, ReadType, void*, void> glReadPixels;
+    public delegate* unmanaged<int, int, int, int, Image, ReadType, pointer, void> glReadPixels;
     public delegate* unmanaged<double, double, double, double, void> glRectd;
     public delegate* unmanaged<double*, double*, void> glRectdv;
     public delegate* unmanaged<float, float, float, float, void> glRectf;
@@ -335,7 +335,7 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<int*, void> glTexCoord4iv;
     public delegate* unmanaged<short, short, short, short, void> glTexCoord4s;
     public delegate* unmanaged<short*, void> glTexCoord4sv;
-    public delegate* unmanaged<int, TexType, int, void*, void> glTexCoordPointer;
+    public delegate* unmanaged<int, TexType, int, pointer, void> glTexCoordPointer;
     public delegate* unmanaged<int, TexEnvN, float, void> glTexEnvf;
     public delegate* unmanaged<int, TexEnvN, float*, void> glTexEnvfv;
     public delegate* unmanaged<int, TexEnvN, int, void> glTexEnvi;
@@ -346,14 +346,14 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<Coords, TexGen, float*, void> glTexGenfv;
     public delegate* unmanaged<Coords, TexGen, int, void> glTexGeni;
     public delegate* unmanaged<Coords, TexGen, int*, void> glTexGeniv;
-    public delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, ImageFormat, ImageType, void*, void> glTexImage1D;
-    public delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, int, ImageFormat, ImageType, void*, void> glTexImage2D;
+    public delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, ImageFormat, ImageType, pointer, void> glTexImage1D;
+    public delegate* unmanaged<TexPTarget, int, InternalFormat, int, int, int, ImageFormat, ImageType, pointer, void> glTexImage2D;
     public delegate* unmanaged<TexTarget, TexNV2, float, void> glTexParameterf;
     public delegate* unmanaged<TexTarget, TexNV2, float*, void> glTexParameterfv;
     public delegate* unmanaged<TexTarget, TexNV2, int, void> glTexParameteri;
     public delegate* unmanaged<TexTarget, TexNV2, int*, void> glTexParameteriv;
-    public delegate* unmanaged<int, int, int, int, ImageFormat, ImageType, void*, void> glTexSubImage1D;
-    public delegate* unmanaged<int, int, int, int, int, int, ImageFormat, ImageType, void*, void> glTexSubImage2D;
+    public delegate* unmanaged<int, int, int, int, ImageFormat, ImageType, pointer, void> glTexSubImage1D;
+    public delegate* unmanaged<int, int, int, int, int, int, ImageFormat, ImageType, pointer, void> glTexSubImage2D;
     public delegate* unmanaged<double, double, double, void> glTranslated;
     public delegate* unmanaged<float, float, float, void> glTranslatef;
     public delegate* unmanaged<double, double, void> glVertex2d;
@@ -380,14 +380,14 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
     public delegate* unmanaged<int*, void> glVertex4iv;
     public delegate* unmanaged<short, short, short, short, void> glVertex4s;
     public delegate* unmanaged<short*, void> glVertex4sv;
-    public delegate* unmanaged<int, TexType, int, void*, void> glVertexPointer;
+    public delegate* unmanaged<int, TexType, int, pointer, void> glVertexPointer;
     public delegate* unmanaged<int, int, int, int, void> glViewport;
 
     /* After OpenGL 1.1 */
     public delegate* unmanaged<int, uint*, void> glGenBuffers;
     public delegate* unmanaged<int, uint*, void> glDeleteBuffers;
     public delegate* unmanaged<Enums.Buffer, uint, void> glBindBuffer;
-    public delegate* unmanaged<Enums.Buffer, int, void*, BufferUsage, void> glBufferData;
+    public delegate* unmanaged<Enums.Buffer, int, pointer, BufferUsage, void> glBufferData;
 
     public nint Module;
 }

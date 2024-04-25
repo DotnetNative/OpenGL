@@ -11,7 +11,7 @@ public static class Enums
     {
         Accum = GL_ACCUM,
         Load = GL_LOAD,
-        Return = GL_RETURN,
+        Return = GL_RETURN, 
         Mult = GL_MULT,
         Add = GL_ADD
     }
@@ -156,7 +156,7 @@ public static class Enums
     const int GL_FALSE = 0;
     public enum Bool : int
     {
-        True = GL_TRUE, 
+        True = GL_TRUE,
         False = GL_FALSE,
     }
 
@@ -187,7 +187,7 @@ public static class Enums
     const int GL_3_BYTES = 5128;
     const int GL_4_BYTES = 5129;
     const int GL_DOUBLE = 5130;
-    public enum Type : int 
+    public enum Type : int
     {
         Byte = GL_BYTE,
         UByte = GL_UNSIGNED_BYTE,
@@ -199,9 +199,9 @@ public static class Enums
         I2 = GL_2_BYTES,
         I3 = GL_3_BYTES,
         I4 = GL_4_BYTES,
-        Double = GL_DOUBLE    
-    }  
-    
+        Double = GL_DOUBLE
+    }
+
     public enum BType : int
     {
         Byte = GL_BYTE,
@@ -214,8 +214,8 @@ public static class Enums
         Double = GL_DOUBLE
     }
 
-    public enum BUType : int 
-    { 
+    public enum BUType : int
+    {
         UByte = GL_UNSIGNED_BYTE,
         UShort = GL_UNSIGNED_SHORT,
         UInt = GL_UNSIGNED_INT,
@@ -232,7 +232,7 @@ public static class Enums
     {
         Byte = GL_BYTE,
         Short = GL_SHORT,
-        Int = GL_INT, 
+        Int = GL_INT,
         Float = GL_FLOAT,
         Double = GL_DOUBLE,
     }
@@ -245,7 +245,7 @@ public static class Enums
         Double = GL_DOUBLE
     }
 
-    public enum ImageType : int 
+    public enum ImageType : int
     {
         Byte = GL_BYTE,
         UByte = GL_UNSIGNED_BYTE,
@@ -1167,7 +1167,7 @@ public static class Enums
         IntensitySize = GL_TEXTURE_INTENSITY_SIZE,
         Components = GL_TEXTURE_COMPONENTS
     }
-    
+
     public enum TexEnvN : int
     {
         Mode = GL_TEXTURE_ENV_MODE,
@@ -1205,7 +1205,7 @@ public static class Enums
     const int GL_DONT_CARE = 4352;
     const int GL_FASTEST = 4353;
     const int GL_NICEST = 4354;
-    public enum Calc : int 
+    public enum Calc : int
     {
         DontCare = GL_DONT_CARE,
         Fastest = GL_FASTEST,
@@ -1328,8 +1328,8 @@ public static class Enums
     const int GL_POINT = 6912;
     const int GL_LINE = 6913;
     const int GL_FILL = 6914;
-    public enum Mesh : int 
-    { 
+    public enum Mesh : int
+    {
         Point = GL_POINT,
         Line = GL_LINE,
         Fill = GL_FILL
@@ -1344,8 +1344,8 @@ public static class Enums
     const int GL_RENDER = 7168;
     const int GL_FEEDBACK = 7169;
     const int GL_SELECT = 7170;
-    public enum Render : int 
-    { 
+    public enum Render : int
+    {
         Render = GL_RENDER,
         Feedback = GL_FEEDBACK,
         Select = GL_SELECT
@@ -1424,7 +1424,7 @@ public static class Enums
     const int GL_CLIENT_PIXEL_STORE_BIT = 1;
     const int GL_CLIENT_VERTEX_ARRAY_BIT = 2;
     const int GL_ALL_CLIENT_ATTRIB_BITS = -1;
-    public enum ClientMask : int 
+    public enum ClientMask : int
     {
         PixelStoreBit = GL_CLIENT_PIXEL_STORE_BIT,
         VertexArrayBit = GL_CLIENT_VERTEX_ARRAY_BIT,

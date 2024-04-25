@@ -4,10 +4,7 @@ using static OpenGL.Enums;
 namespace OpenGL;
 public unsafe static class GL
 {
-    static GL()
-    {
-        UpdateInterface();
-    }
+    static GL() => UpdateInterface();
 
     public static GLInterface* Interface;
     public static void UpdateInterface()
@@ -39,7 +36,7 @@ public unsafe static class GL
     public static void Bitmap(int width, int height, float xorig, float yorig, float xmove, float ymove, byte* bitmap) => Interface->glBitmap(width, height, xorig, yorig, xmove, ymove, bitmap);
     public static void BlendFunc(Factor sfactor, Factor dfactor) => Interface->glBlendFunc(sfactor, dfactor);
     public static void CallList(uint list) => Interface->glCallList(list);
-    public static void CallLists(int n, Enums.Type type, void* lists) => Interface->glCallLists(n, type, lists);
+    public static void CallLists(int n, Enums.Type type, pointer lists) => Interface->glCallLists(n, type, lists);
     public static void Clear(uint mask) => Interface->glClear(mask);
     public static void ClearAccum(float red, float green, float blue, float alpha) => Interface->glClearAccum(red, green, blue, alpha);
     public static void ClearColor(float red, float green, float blue, float alpha) => Interface->glClearColor(red, green, blue, alpha);
@@ -128,7 +125,7 @@ public unsafe static class GL
     {
         fixed (short* vPtr = v)
             Interface->glColor4sv(vPtr);
-    }        
+    }
     public static void Color4ub(byte red, byte green, byte blue, byte alpha) => Interface->glColor4ub(red, green, blue, alpha);
     public static void Color4ubv(byte[] v)
     {
@@ -149,7 +146,7 @@ public unsafe static class GL
     }
     public static void ColorMask(byte red, byte green, byte blue, byte alpha) => Interface->glColorMask(red, green, blue, alpha);
     public static void ColorMaterial(Face face, MaterialParam mode) => Interface->glColorMaterial(face, mode);
-    public static void ColorPointer(int size, BType type, int stride, void* pointer) => Interface->glColorPointer(size, type, stride, pointer);
+    public static void ColorPointer(int size, BType type, int stride, pointer pointer) => Interface->glColorPointer(size, type, stride, pointer);
     public static void CopyPixels(int x, int y, int width, int height, CopyType type) => Interface->glCopyPixels(x, y, width, height, type);
     public static void CopyTexImage1D(TexPTarget target, int level, InternalFormat internalFormat, int x, int y, int width, int border) => Interface->glCopyTexImage1D(target, level, internalFormat, x, y, width, border);
     public static void CopyTexImage2D(TexPTarget target, int level, InternalFormat internalFormat, int x, int y, int width, int height, int border) => Interface->glCopyTexImage2D(target, level, internalFormat, x, y, width, height, border);
@@ -175,10 +172,10 @@ public unsafe static class GL
     public static void DisableClientState(ArrayState array) => Interface->glDisableClientState(array);
     public static void DrawArrays(Mode mode, int first, int count) => Interface->glDrawArrays(mode, first, count);
     public static void DrawBuffer(Mode mode) => Interface->glDrawBuffer(mode);
-    public static void DrawElements(Mode mode, int count, BUType type, void* indices) => Interface->glDrawElements(mode, count, type, indices);
-    public static void DrawPixels(int width, int height, ImageFormat format, BType type, void* pixels) => Interface->glDrawPixels(width, height, format, type, pixels);
+    public static void DrawElements(Mode mode, int count, BUType type, pointer indices) => Interface->glDrawElements(mode, count, type, indices);
+    public static void DrawPixels(int width, int height, ImageFormat format, BType type, pointer pixels) => Interface->glDrawPixels(width, height, format, type, pixels);
     public static void EdgeFlag(byte flag) => Interface->glEdgeFlag(flag);
-    public static void EdgeFlagPointer(int stride, void* pointer) => Interface->glEdgeFlagPointer(stride, pointer);
+    public static void EdgeFlagPointer(int stride, pointer pointer) => Interface->glEdgeFlagPointer(stride, pointer);
     public static void EdgeFlagv(byte[] flag)
     {
         fixed (byte* flagPtr = flag)
@@ -324,7 +321,7 @@ public unsafe static class GL
         fixed (ushort* valuesPtr = values)
             Interface->glGetPixelMapusv(map, valuesPtr);
     }
-    public static void GetPointerv(PNamePtr pname, void** @params) => Interface->glGetPointerv(pname, @params);
+    public static void GetPointerv(PNamePtr pname, pointer* @params) => Interface->glGetPointerv(pname, @params);
     public static void GetPolygonStipple(byte[] mask)
     {
         fixed (byte* maskPtr = mask)
@@ -356,7 +353,7 @@ public unsafe static class GL
         fixed (int* @paramsPtr = @params)
             Interface->glGetTexGeniv(coord, pname, @paramsPtr);
     }
-    public static void GetTexImage(TexTarget target, int level, Image format, BType type, void* pixels) => Interface->glGetTexImage(target, level, format, type, pixels);
+    public static void GetTexImage(TexTarget target, int level, Image format, BType type, pointer pixels) => Interface->glGetTexImage(target, level, format, type, pixels);
     public static void GetTexLevelParameterfv(TexPTarget target, int level, TexN pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
@@ -379,7 +376,7 @@ public unsafe static class GL
     }
     public static void Hint(Hint target, Calc mode) => Interface->glHint(target, mode);
     public static void IndexMask(uint mask) => Interface->glIndexMask(mask);
-    public static void IndexPointer(TexType type, int stride, void* pointer) => Interface->glIndexPointer(type, stride, pointer);
+    public static void IndexPointer(TexType type, int stride, pointer pointer) => Interface->glIndexPointer(type, stride, pointer);
     public static void Indexd(double c) => Interface->glIndexd(c);
     public static void Indexdv(double[] c)
     {
@@ -411,7 +408,7 @@ public unsafe static class GL
             Interface->glIndexubv(cPtr);
     }
     public static void InitNames() => Interface->glInitNames();
-    public static void InterleavedArrays(ArrayFormat format, int stride, void* pointer) => Interface->glInterleavedArrays(format, stride, pointer);
+    public static void InterleavedArrays(ArrayFormat format, int stride, pointer pointer) => Interface->glInterleavedArrays(format, stride, pointer);
     public static bool IsEnabled(Cap cap) => Interface->glIsEnabled(cap) == 1;
     public static byte IsList(uint list) => Interface->glIsList(list);
     public static byte IsTexture(uint texture) => Interface->glIsTexture(texture);
@@ -545,7 +542,7 @@ public unsafe static class GL
         fixed (short* vPtr = v)
             Interface->glNormal3sv(vPtr);
     }
-    public static void NormalPointer(PtrType type, int stride, void* pointer) => Interface->glNormalPointer(type, stride, pointer);
+    public static void NormalPointer(PtrType type, int stride, pointer pointer) => Interface->glNormalPointer(type, stride, pointer);
     public static void Ortho(double left, double right, double bottom, double top, double zNear, double zFar) => Interface->glOrtho(left, right, bottom, top, zNear, zFar);
     public static void PassThrough(float token) => Interface->glPassThrough(token);
     public static void PixelMapfv(Map map, int mapsize, float[] values)
@@ -663,7 +660,7 @@ public unsafe static class GL
             Interface->glRasterPos4sv(vPtr);
     }
     public static void ReadBuffer(Buf mode) => Interface->glReadBuffer(mode);
-    public static void ReadPixels(int x, int y, int width, int height, Image format, ReadType type, void* pixels) => Interface->glReadPixels(x, y, width, height, format, type, pixels);
+    public static void ReadPixels(int x, int y, int width, int height, Image format, ReadType type, pointer pixels) => Interface->glReadPixels(x, y, width, height, format, type, pixels);
     public static void Rectd(double x1, double y1, double x2, double y2) => Interface->glRectd(x1, y1, x2, y2);
     public static void Rectdv(double[] v1, double[] v2)
     {
@@ -717,7 +714,7 @@ public unsafe static class GL
     public static void TexCoord1fv(float[] v)
     {
         fixed (float* vPtr = v)
-            Interface->glTexCoord1fv(vPtr);  
+            Interface->glTexCoord1fv(vPtr);
     }
     public static void TexCoord1i(int s) => Interface->glTexCoord1i(s);
     public static void TexCoord1iv(int[] v)
@@ -803,7 +800,7 @@ public unsafe static class GL
         fixed (short* vPtr = v)
             Interface->glTexCoord4sv(vPtr);
     }
-    public static void TexCoordPointer(int size, TexType type, int stride, void* pointer) => Interface->glTexCoordPointer(size, type, stride, pointer);
+    public static void TexCoordPointer(int size, TexType type, int stride, pointer pointer) => Interface->glTexCoordPointer(size, type, stride, pointer);
     public static void TexEnvf(TexEnvN pname, float param) => Interface->glTexEnvf(TextureEnv, pname, param);
     public static void TexEnvfv(TexEnvN pname, float[] @params)
     {
@@ -834,8 +831,8 @@ public unsafe static class GL
         fixed (int* @paramsPtr = @params)
             Interface->glTexGeniv(coord, pname, @paramsPtr);
     }
-    public static void TexImage1D(int level, InternalFormat internalformat, int width, int border, ImageFormat format, ImageType type, void* pixels) => Interface->glTexImage1D(TexPTarget.Texture1D, level, internalformat, width, border, format, type, pixels);
-    public static void TexImage2D(int level, InternalFormat internalformat, int width, int height, int border, ImageFormat format, ImageType type, void* pixels) => Interface->glTexImage2D(TexPTarget.Texture2D, level, internalformat, width, height, border, format, type, pixels);
+    public static void TexImage1D(int level, InternalFormat internalformat, int width, int border, ImageFormat format, ImageType type, pointer pixels) => Interface->glTexImage1D(TexPTarget.Texture1D, level, internalformat, width, border, format, type, pixels);
+    public static void TexImage2D(int level, InternalFormat internalformat, int width, int height, int border, ImageFormat format, ImageType type, pointer pixels) => Interface->glTexImage2D(TexPTarget.Texture2D, level, internalformat, width, height, border, format, type, pixels);
     public static void TexParameterf(TexTarget target, TexNV2 pname, float param) => Interface->glTexParameterf(target, pname, param);
     public static void TexParameterfv(TexTarget target, TexNV2 pname, float[] @params)
     {
@@ -848,8 +845,8 @@ public unsafe static class GL
         fixed (int* @paramsPtr = @params)
             Interface->glTexParameteriv(target, pname, @paramsPtr);
     }
-    public static void TexSubImage1D(int level, int xoffset, int width, ImageFormat format, ImageType type, void* pixels) => Interface->glTexSubImage1D((int)TexTarget.Texture1D, level, xoffset, width, format, type, pixels);
-    public static void TexSubImage2D(int level, int xoffset, int yoffset, int width, int height, ImageFormat format, ImageType type, void* pixels) => Interface->glTexSubImage2D((int)TexTarget.Texture2D, level, xoffset, yoffset, width, height, format, type, pixels);
+    public static void TexSubImage1D(int level, int xoffset, int width, ImageFormat format, ImageType type, pointer pixels) => Interface->glTexSubImage1D((int)TexTarget.Texture1D, level, xoffset, width, format, type, pixels);
+    public static void TexSubImage2D(int level, int xoffset, int yoffset, int width, int height, ImageFormat format, ImageType type, pointer pixels) => Interface->glTexSubImage2D((int)TexTarget.Texture2D, level, xoffset, yoffset, width, height, format, type, pixels);
     public static void Translated(double x, double y, double z) => Interface->glTranslated(x, y, z);
     public static void Translatef(float x, float y, float z) => Interface->glTranslatef(x, y, z);
     public static void Vertex2d(double x, double y) => Interface->glVertex2d(x, y);
@@ -925,7 +922,7 @@ public unsafe static class GL
         fixed (short* vPtr = v)
             Interface->glVertex4sv(vPtr);
     }
-    public static void VertexPointer(int size, TexType type, int stride, void* pointer) => Interface->glVertexPointer(size, type, stride, pointer);
+    public static void VertexPointer(int size, TexType type, int stride, pointer pointer) => Interface->glVertexPointer(size, type, stride, pointer);
     public static void Viewport(int x, int y, int width, int height) => Interface->glViewport(x, y, width, height);
 
     /* After OpenGL 1.1 */
@@ -941,5 +938,5 @@ public unsafe static class GL
             Interface->glDeleteBuffers(n, buffersPtr);
     }
     public static void BindBuffer(Enums.Buffer type, uint buffer) => Interface->glBindBuffer(type, buffer);
-    public static void BufferData(Enums.Buffer type, int size, void* data, BufferUsage usage) => Interface->glBufferData(type, size, data, usage);
+    public static void BufferData(Enums.Buffer type, int size, pointer data, BufferUsage usage) => Interface->glBufferData(type, size, data, usage);
 }

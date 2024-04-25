@@ -1,11 +1,10 @@
-<h1>NAOT OpenGL</h1>
+# OpenGL [![NuGet](https://img.shields.io/nuget/v/Yotic.OpenGL.svg)](https://www.nuget.org/packages/Yotic.OpenGL)
 
-OpenGL Wrapper.\
-Works with already loaded OpenGL library.\
-NuGet - https://www.nuget.org/packages/Yotic.OpenGL/
+High-level wrapper for native OpenGL 1.1 functions. \
+Only works with already loaded opengl32.dll module
 
-<h1>Example</h1>
-
+Example
+------------------------------
 ```
 using OpenGL;
 

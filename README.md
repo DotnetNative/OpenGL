@@ -1,6 +1,6 @@
 # OpenGL [![NuGet](https://img.shields.io/nuget/v/Yotic.OpenGL.svg)](https://www.nuget.org/packages/Yotic.OpenGL)
 
-High-level wrapper for native OpenGL functions. \
+High-level wrapper for native OpenGL 1.1 functions. \
 Only works with already loaded opengl32.dll module
 
 Example

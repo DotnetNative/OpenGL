@@ -4,9 +4,7 @@ using static OpenGL.Interop;
 namespace OpenGL;
 public unsafe struct GLInterface
 {
-    nint ProcAddr(string name) => GetProcAddress(Module, name);
-
-    public static string[] FunctionsNames =
+    public static readonly string[] FunctionsNames =
 @"glAccum glAlphaFunc glAreTexturesResident glArrayElement glBegin glBindTexture glBitmap glBlendFunc glCallList glCallLists glClear glClearAccum glClearColor
 glClearDepth glClearIndex glClearStencil glClipPlane glColor3b glColor3bv glColor3d glColor3dv glColor3f glColor3fv glColor3i glColor3iv glColor3s glColor3sv
 glColor3ub glColor3ubv glColor3ui glColor3uiv glColor3us glColor3usv glColor4b glColor4bv glColor4d glColor4dv glColor4f glColor4fv glColor4i glColor4iv glColor4s
@@ -34,7 +32,7 @@ glTexCoordPointer glTexEnvf glTexEnvfv glTexEnvi glTexEnviv glTexGend glTexGendv
 glTexParameterfv glTexParameteri glTexParameteriv glTexSubImage1D glTexSubImage2D glTranslated glTranslatef glVertex2d glVertex2dv glVertex2f glVertex2fv glVertex2i
 glVertex2iv glVertex2s glVertex2sv glVertex3d glVertex3dv glVertex3f glVertex3fv glVertex3i glVertex3iv glVertex3s glVertex3sv glVertex4d glVertex4dv glVertex4f
 glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glViewport glGenBuffers glDeleteBuffers glBindBuffer glBufferData".Replace("\r", "").Split(' ', '\n');
-    public static int FunctionsCount = FunctionsNames.Length;
+    public static readonly int FunctionsCount = FunctionsNames.Length;
 
     public void Init(nint* ptr)
     {
@@ -42,8 +40,8 @@ glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glView
         if (Module == 0)
             return;
 
-        for (int i = 0; i < FunctionsCount; i++)
-            ptr[i] = ProcAddr(FunctionsNames[i]);
+        for (var i = 0; i < FunctionsCount; i++)
+            ptr[i] = GetProcAddress(Module, FunctionsNames[i]);
     }
 
     public delegate* unmanaged<Op, float, void> glAccum;

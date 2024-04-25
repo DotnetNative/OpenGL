@@ -9,7 +9,7 @@ public unsafe static class GL
     public static GLInterface* Interface;
     public static void UpdateInterface()
     {
-        if (Interface != null)
+        if (Interface is not null)
             Marshal.FreeCoTaskMem((nint)Interface);
 
         Interface = (GLInterface*)Marshal.AllocCoTaskMem(sizeof(GLInterface));

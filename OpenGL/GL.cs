@@ -1,7 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using static OpenGL.Enums;
-
-namespace OpenGL;
+﻿namespace OpenGL;
 public unsafe static class GL
 {
     static GL() => UpdateInterface();

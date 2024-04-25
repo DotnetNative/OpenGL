@@ -1,7 +1,4 @@
-﻿using static OpenGL.Enums;
-using static OpenGL.Interop;
-
-namespace OpenGL;
+﻿namespace OpenGL;
 public unsafe struct GLInterface
 {
     public static readonly string[] FunctionsNames =

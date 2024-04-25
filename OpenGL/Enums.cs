@@ -1,5 +1,4 @@
 ﻿namespace OpenGL;
-
 public static class Enums
 {
     const int GL_ACCUM = 256;

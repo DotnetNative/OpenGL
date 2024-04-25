@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	<PackageId>Yotic.OpenGL</PackageId>
-	<Title>OpenGL Wrapper. Works inside another process</Title>
+	<Title>OpenGL 1.1 Wrapper. Works inside another process</Title>
 	<Authors>Yotic</Authors>
 	<Company />
 	<Product />
@@ -29,6 +29,16 @@ Only works with already loaded opengl32.dll module</Description>
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="OpenGL.Enums">
+      <Static>True</Static>
+    </Using>
+    <Using Include="OpenGL.Interop">
+      <Static>True</Static>
+    </Using>
+    <Using Include="System.Runtime.InteropServices" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace OpenGL;
+﻿namespace OpenGL;
 class Interop
 {
     const string kernel = "kernel32";

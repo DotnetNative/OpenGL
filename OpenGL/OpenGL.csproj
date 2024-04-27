@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net8.0.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -12,25 +11,30 @@
 	<Product />
 	<Description>High-level wrapper for native OpenGL 1.1 functions.
 Only works with already loaded opengl32.dll module</Description>
-	<Version>2.0.0</Version>
-	<PackageReadmeFile>Pack.md</PackageReadmeFile>
+	<Version>2.0.2</Version>
+	<PackageReadmeFile>PACK.md</PackageReadmeFile>
+	<IncludeContentInPack>true</IncludeContentInPack>
+	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	<RepositoryUrl>https://github.com/DotnetNative/OpenGL</RepositoryUrl>
-	<Platforms>AnyCPU;x64</Platforms>
+	<Platforms>x64</Platforms>
 	<PackageProjectUrl>https://github.com/DotnetNative/OpenGL</PackageProjectUrl>
 	<PackageTags>dnb;naot;korn;opengl</PackageTags>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="DotnetNativeBase" Version="1.0.0" />
+    <PackageReference Include="DotnetNativeBase" Version="1.0.3" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Update="Pack.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
+    <None Include="PACK.md">
+        <Pack>true</Pack>
+        <PackagePath></PackagePath>
+        <Visible>False</Visible>
+    </None>
+    <None Include="..\LICENSE.txt">
+        <Pack>true</Pack>
+        <PackagePath></PackagePath>
+        <Visible>False</Visible>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <Using Include="OpenGL.Enums">
       <Static>True</Static>
@@ -40,5 +44,4 @@ Only works with already loaded opengl32.dll module</Description>
     </Using>
     <Using Include="System.Runtime.InteropServices" />
   </ItemGroup>
-
 </Project>

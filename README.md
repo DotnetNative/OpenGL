@@ -10,3 +10,10 @@ using OpenGL;
 
 GL.Enable(Enums.Cap.Blend);
 ```
+
+Versions
+------------------------------
+| Start ordinal | Framework | Description | Date |
+| ---   | ---     | ---                                               | ---          |
+| 2.0.0 | .net8.0 | Changed frameword; Added DotnetNativeBase support | Apr 25, 2024 |
+| 1.0.0 | .net7.0 |                                                   | Mar 9, 2023  |

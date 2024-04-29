@@ -13,7 +13,7 @@ GL.Enable(Enums.Cap.Blend);
 
 Used Libraries
 ------------------------------
-**DotnetNativeBase** [![NuGet](https://img.shields.io/nuget/v/DotnetNativeBase.svg)](https://www.nuget.org/packages/DotnetNativeBase)
+DotnetNativeBase  [![NuGet](https://img.shields.io/nuget/v/DotnetNativeBase.svg)](https://www.nuget.org/packages/DotnetNativeBase)
 
 Versions
 ------------------------------

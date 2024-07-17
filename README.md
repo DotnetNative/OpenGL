@@ -11,9 +11,13 @@ using OpenGL;
 GL.Enable(Enums.Cap.Blend);
 ```
 
+Used Libraries
+------------------------------
+DotnetNativeBase  [![NuGet](https://img.shields.io/nuget/v/DotnetNativeBase.svg)](https://www.nuget.org/packages/DotnetNativeBase)
+
 Versions
 ------------------------------
-| Start ordinal | Framework | Description | Date |
-| ---   | ---     | ---                                               | ---          |
-| 2.0.0 | .net8.0 | Changed frameword; Added DotnetNativeBase support | Apr 25, 2024 |
-| 1.0.0 | .net7.0 |                                                   | Mar 9, 2023  |
+| Start ordinal | Framework | Description                                     | Date         |
+| ---           | ---       | ---                                             | ---          |
+| 2.0.0         | .net8.0   | Changed framework; Switched to DotnetNativeBase | Apr 25, 2024 |
+| 1.0.0         | .net7.0   |                                                 | Mar 9, 2023  |

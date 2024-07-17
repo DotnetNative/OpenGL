@@ -31,16 +31,16 @@ public unsafe static class GL
             Interface->glBitmap(width, height, xorig, yorig, xmove, ymove, bitmapPtr);
     }
     public static void Bitmap(int width, int height, float xorig, float yorig, float xmove, float ymove, byte* bitmap) => Interface->glBitmap(width, height, xorig, yorig, xmove, ymove, bitmap);
-    public static void BlendFunc(Factor sfactor, Factor dfactor) => Interface->glBlendFunc(sfactor, dfactor);
+    public static void BlendFunc(FactorEnum sfactor, FactorEnum dfactor) => Interface->glBlendFunc(sfactor, dfactor);
     public static void CallList(uint list) => Interface->glCallList(list);
-    public static void CallLists(int n, Enums.Type type, pointer lists) => Interface->glCallLists(n, type, lists);
+    public static void CallLists(int n, Enums.DataType type, pointer lists) => Interface->glCallLists(n, type, lists);
     public static void Clear(uint mask) => Interface->glClear(mask);
     public static void ClearAccum(float red, float green, float blue, float alpha) => Interface->glClearAccum(red, green, blue, alpha);
     public static void ClearColor(float red, float green, float blue, float alpha) => Interface->glClearColor(red, green, blue, alpha);
     public static void ClearDepth(double depth) => Interface->glClearDepth(depth);
     public static void ClearIndex(float c) => Interface->glClearIndex(c);
     public static void ClearStencil(int s) => Interface->glClearStencil(s);
-    public static void ClipPlane(Plane plane, double[] equation)
+    public static void ClipPlane(PlaneOrdinal plane, double[] equation)
     {
         fixed (double* equationPtr = equation)
             Interface->glClipPlane(plane, equationPtr);
@@ -142,14 +142,14 @@ public unsafe static class GL
             Interface->glColor4usv(vPtr);
     }
     public static void ColorMask(byte red, byte green, byte blue, byte alpha) => Interface->glColorMask(red, green, blue, alpha);
-    public static void ColorMaterial(Face face, MaterialParam mode) => Interface->glColorMaterial(face, mode);
+    public static void ColorMaterial(FaceEnum face, MaterialParam mode) => Interface->glColorMaterial(face, mode);
     public static void ColorPointer(int size, BType type, int stride, pointer pointer) => Interface->glColorPointer(size, type, stride, pointer);
     public static void CopyPixels(int x, int y, int width, int height, CopyType type) => Interface->glCopyPixels(x, y, width, height, type);
     public static void CopyTexImage1D(TexPTarget target, int level, InternalFormat internalFormat, int x, int y, int width, int border) => Interface->glCopyTexImage1D(target, level, internalFormat, x, y, width, border);
     public static void CopyTexImage2D(TexPTarget target, int level, InternalFormat internalFormat, int x, int y, int width, int height, int border) => Interface->glCopyTexImage2D(target, level, internalFormat, x, y, width, height, border);
     public static void CopyTexSubImage1D(TexPTarget target, int level, int xoffset, int x, int y, int width) => Interface->glCopyTexSubImage1D(target, level, xoffset, x, y, width);
     public static void CopyTexSubImage2D(TexPTarget target, int level, int xoffset, int yoffset, int x, int y, int width, int height) => Interface->glCopyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height);
-    public static void CullFace(Face mode) => Interface->glCullFace(mode);
+    public static void CullFace(FaceEnum mode) => Interface->glCullFace(mode);
     public static void DeleteLists(uint list, int range) => Interface->glDeleteLists(list, range);
     public static void DeleteTextures(int n, uint[] textures)
     {
@@ -207,10 +207,10 @@ public unsafe static class GL
             Interface->glEvalCoord2fv(uPtr);
     }
     public static void EvalMesh1(EMesh mode, int i1, int i2) => Interface->glEvalMesh1(mode, i1, i2);
-    public static void EvalMesh2(Mesh mode, int i1, int i2, int j1, int j2) => Interface->glEvalMesh2(mode, i1, i2, j1, j2);
+    public static void EvalMesh2(MeshType mode, int i1, int i2, int j1, int j2) => Interface->glEvalMesh2(mode, i1, i2, j1, j2);
     public static void EvalPoint1(int i) => Interface->glEvalPoint1(i);
     public static void EvalPoint2(int i, int j) => Interface->glEvalPoint2(i, j);
-    public static void FeedbackBuffer(int size, Vertex type, float[] buffer)
+    public static void FeedbackBuffer(int size, VertexType type, float[] buffer)
     {
         fixed (float* bufferPtr = buffer)
             Interface->glFeedbackBuffer(size, type, bufferPtr);
@@ -244,7 +244,7 @@ public unsafe static class GL
         fixed (byte* @paramsPtr = @params)
             Interface->glGetBooleanv(pname, @paramsPtr);
     }
-    public static void GetClipPlane(Plane plane, double[] equation)
+    public static void GetClipPlane(PlaneOrdinal plane, double[] equation)
     {
         fixed (double* equationPtr = equation)
             Interface->glGetClipPlane(plane, equationPtr);
@@ -268,52 +268,52 @@ public unsafe static class GL
         fixed (int* @paramsPtr = @params)
             Interface->glGetIntegerv(pname, @paramsPtr);
     }
-    public static void GetLightfv(Light light, LightN pname, float[] @params)
+    public static void GetLightfv(LightOrdinal light, LightN pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
             Interface->glGetLightfv(light, pname, @paramsPtr);
     }
-    public static void GetLightiv(Light light, LightN pname, int[] @params)
+    public static void GetLightiv(LightOrdinal light, LightN pname, int[] @params)
     {
         fixed (int* @paramsPtr = @params)
             Interface->glGetLightiv(light, pname, @paramsPtr);
     }
-    public static void GetMapdv(MapTarget target, Query query, double[] v)
+    public static void GetMapdv(MapTarget target, QueryType query, double[] v)
     {
         fixed (double* vPtr = v)
             Interface->glGetMapdv(target, query, vPtr);
     }
-    public static void GetMapfv(MapTarget target, Query query, float[] v)
+    public static void GetMapfv(MapTarget target, QueryType query, float[] v)
     {
         fixed (float* vPtr = v)
             Interface->glGetMapfv(target, query, vPtr);
     }
-    public static void GetMapiv(MapTarget target, Query query, int[] v)
+    public static void GetMapiv(MapTarget target, QueryType query, int[] v)
     {
         fixed (int* vPtr = v)
             Interface->glGetMapiv(target, query, vPtr);
     }
-    public static void GetMaterialfv(Side face, MaterialParam pname, float[] @params)
+    public static void GetMaterialfv(SideEnum face, MaterialParam pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
             Interface->glGetMaterialfv(face, pname, @paramsPtr);
     }
-    public static void GetMaterialiv(Side face, MaterialParam pname, int[] @params)
+    public static void GetMaterialiv(SideEnum face, MaterialParam pname, int[] @params)
     {
         fixed (int* @paramsPtr = @params)
             Interface->glGetMaterialiv(face, pname, @paramsPtr);
     }
-    public static void GetPixelMapfv(Map map, float[] values)
+    public static void GetPixelMapfv(MapType map, float[] values)
     {
         fixed (float* valuesPtr = values)
             Interface->glGetPixelMapfv(map, valuesPtr);
     }
-    public static void GetPixelMapuiv(Map map, uint[] values)
+    public static void GetPixelMapuiv(MapType map, uint[] values)
     {
         fixed (uint* valuesPtr = values)
             Interface->glGetPixelMapuiv(map, valuesPtr);
     }
-    public static void GetPixelMapusv(Map map, ushort[] values)
+    public static void GetPixelMapusv(MapType map, ushort[] values)
     {
         fixed (ushort* valuesPtr = values)
             Interface->glGetPixelMapusv(map, valuesPtr);
@@ -335,22 +335,22 @@ public unsafe static class GL
         fixed (int* @paramsPtr = @params)
             Interface->glGetTexEnviv(TextureEnv, pname, @paramsPtr);
     }
-    public static void GetTexGendv(Coords coord, TexGenN pname, double[] @params)
+    public static void GetTexGendv(CoordsEnum coord, TexGenN pname, double[] @params)
     {
         fixed (double* @paramsPtr = @params)
             Interface->glGetTexGendv(coord, pname, @paramsPtr);
     }
-    public static void GetTexGenfv(Coords coord, TexGenN pname, float[] @params)
+    public static void GetTexGenfv(CoordsEnum coord, TexGenN pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
             Interface->glGetTexGenfv(coord, pname, @paramsPtr);
     }
-    public static void GetTexGeniv(Coords coord, TexGenN pname, int[] @params)
+    public static void GetTexGeniv(CoordsEnum coord, TexGenN pname, int[] @params)
     {
         fixed (int* @paramsPtr = @params)
             Interface->glGetTexGeniv(coord, pname, @paramsPtr);
     }
-    public static void GetTexImage(TexTarget target, int level, Image format, BType type, pointer pixels) => Interface->glGetTexImage(target, level, format, type, pixels);
+    public static void GetTexImage(TexTarget target, int level, ImagePixelType format, BType type, pointer pixels) => Interface->glGetTexImage(target, level, format, type, pixels);
     public static void GetTexLevelParameterfv(TexPTarget target, int level, TexN pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
@@ -371,7 +371,7 @@ public unsafe static class GL
         fixed (int* @paramsPtr = @params)
             Interface->glGetTexParameteriv(target, pname, @paramsPtr);
     }
-    public static void Hint(Hint target, Calc mode) => Interface->glHint(target, mode);
+    public static void Hint(Hint target, CalcType mode) => Interface->glHint(target, mode);
     public static void IndexMask(uint mask) => Interface->glIndexMask(mask);
     public static void IndexPointer(TexType type, int stride, pointer pointer) => Interface->glIndexPointer(type, stride, pointer);
     public static void Indexd(double c) => Interface->glIndexd(c);
@@ -421,14 +421,14 @@ public unsafe static class GL
         fixed (int* @paramsPtr = @params)
             Interface->glLightModeliv(pname, @paramsPtr);
     }
-    public static void Lightf(Light light, LightN pname, float param) => Interface->glLightf(light, pname, param);
-    public static void Lightfv(Light light, LightN pname, float[] @params)
+    public static void Lightf(LightOrdinal light, LightN pname, float param) => Interface->glLightf(light, pname, param);
+    public static void Lightfv(LightOrdinal light, LightN pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
             Interface->glLightfv(light, pname, @paramsPtr);
     }
-    public static void Lighti(Light light, LightN pname, int param) => Interface->glLighti(light, pname, param);
-    public static void Lightiv(Light light, LightN pname, int[] @params)
+    public static void Lighti(LightOrdinal light, LightN pname, int param) => Interface->glLighti(light, pname, param);
+    public static void Lightiv(LightOrdinal light, LightN pname, int[] @params)
     {
         fixed (int* @paramsPtr = @params)
             Interface->glLightiv(light, pname, @paramsPtr);
@@ -443,7 +443,7 @@ public unsafe static class GL
             Interface->glLoadMatrixd(mPtr);
     }
     public static void LoadMatrixd(double* m) => Interface->glLoadMatrixd(m);
-    public static void LoadMatrixd(Matrix mode, double* m)
+    public static void LoadMatrixd(MatrixType mode, double* m)
     {
         Interface->glMatrixMode(mode);
         Interface->glLoadMatrixd(m);
@@ -454,7 +454,7 @@ public unsafe static class GL
             Interface->glLoadMatrixf(mPtr);
     }
     public static void LoadMatrixf(float* m) => Interface->glLoadMatrixf(m);
-    public static void LoadMatrixf(Matrix mode, float* m)
+    public static void LoadMatrixf(MatrixType mode, float* m)
     {
         Interface->glMatrixMode(mode);
         Interface->glLoadMatrixf(m);
@@ -485,19 +485,19 @@ public unsafe static class GL
     public static void MapGrid1f(int un, float u1, float u2) => Interface->glMapGrid1f(un, u1, u2);
     public static void MapGrid2d(int un, double u1, double u2, int vn, double v1, double v2) => Interface->glMapGrid2d(un, u1, u2, vn, v1, v2);
     public static void MapGrid2f(int un, float u1, float u2, int vn, float v1, float v2) => Interface->glMapGrid2f(un, u1, u2, vn, v1, v2);
-    public static void Materialf(Side face, float param) => Interface->glMaterialf(face, Shininess, param);
-    public static void Materialfv(Side face, MaterialParam pname, float[] @params)
+    public static void Materialf(SideEnum face, float param) => Interface->glMaterialf(face, Shininess, param);
+    public static void Materialfv(SideEnum face, MaterialParam pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
             Interface->glMaterialfv(face, pname, @paramsPtr);
     }
-    public static void Materiali(Side face, MaterialParam pname, int param) => Interface->glMateriali(face, pname, param);
-    public static void Materialiv(Side face, MaterialParam pname, int[] @params)
+    public static void Materiali(SideEnum face, MaterialParam pname, int param) => Interface->glMateriali(face, pname, param);
+    public static void Materialiv(SideEnum face, MaterialParam pname, int[] @params)
     {
         fixed (int* @paramsPtr = @params)
             Interface->glMaterialiv(face, pname, @paramsPtr);
     }
-    public static void MatrixMode(Matrix mode) => Interface->glMatrixMode(mode);
+    public static void MatrixMode(MatrixType mode) => Interface->glMatrixMode(mode);
     public static void MultMatrixd(double[] m)
     {
         fixed (double* mPtr = m)
@@ -508,7 +508,7 @@ public unsafe static class GL
         fixed (float* mPtr = m)
             Interface->glMultMatrixf(mPtr);
     }
-    public static void NewList(uint list, Compile mode) => Interface->glNewList(list, mode);
+    public static void NewList(uint list, CompileState mode) => Interface->glNewList(list, mode);
     public static void Normal3b(sbyte nx, sbyte ny, sbyte nz) => Interface->glNormal3b(nx, ny, nz);
     public static void Normal3bv(sbyte[] v)
     {
@@ -542,17 +542,17 @@ public unsafe static class GL
     public static void NormalPointer(PtrType type, int stride, pointer pointer) => Interface->glNormalPointer(type, stride, pointer);
     public static void Ortho(double left, double right, double bottom, double top, double zNear, double zFar) => Interface->glOrtho(left, right, bottom, top, zNear, zFar);
     public static void PassThrough(float token) => Interface->glPassThrough(token);
-    public static void PixelMapfv(Map map, int mapsize, float[] values)
+    public static void PixelMapfv(MapType map, int mapsize, float[] values)
     {
         fixed (float* valuesPtr = values)
             Interface->glPixelMapfv(map, mapsize, valuesPtr);
     }
-    public static void PixelMapuiv(Map map, int mapsize, uint[] values)
+    public static void PixelMapuiv(MapType map, int mapsize, uint[] values)
     {
         fixed (uint* valuesPtr = values)
             Interface->glPixelMapuiv(map, mapsize, valuesPtr);
     }
-    public static void PixelMapusv(Map map, int mapsize, ushort[] values)
+    public static void PixelMapusv(MapType map, int mapsize, ushort[] values)
     {
         fixed (ushort* valuesPtr = values)
             Interface->glPixelMapusv(map, mapsize, valuesPtr);
@@ -563,7 +563,7 @@ public unsafe static class GL
     public static void PixelTransferi(TransferN pname, int param) => Interface->glPixelTransferi(pname, param);
     public static void PixelZoom(float xfactor, float yfactor) => Interface->glPixelZoom(xfactor, yfactor);
     public static void PointSize(float size) => Interface->glPointSize(size);
-    public static void PolygonMode(MaterialFace face, Mesh mode) => Interface->glPolygonMode(face, mode);
+    public static void PolygonMode(MaterialFace face, MeshType mode) => Interface->glPolygonMode(face, mode);
     public static void PolygonOffset(float factor, float units) => Interface->glPolygonOffset(factor, units);
     public static void PolygonStipple(byte[] mask)
     {
@@ -656,8 +656,8 @@ public unsafe static class GL
         fixed (short* vPtr = v)
             Interface->glRasterPos4sv(vPtr);
     }
-    public static void ReadBuffer(Buf mode) => Interface->glReadBuffer(mode);
-    public static void ReadPixels(int x, int y, int width, int height, Image format, ReadType type, pointer pixels) => Interface->glReadPixels(x, y, width, height, format, type, pixels);
+    public static void ReadBuffer(BufType mode) => Interface->glReadBuffer(mode);
+    public static void ReadPixels(int x, int y, int width, int height, ImagePixelType format, ReadType type, pointer pixels) => Interface->glReadPixels(x, y, width, height, format, type, pixels);
     public static void Rectd(double x1, double y1, double x2, double y2) => Interface->glRectd(x1, y1, x2, y2);
     public static void Rectdv(double[] v1, double[] v2)
     {
@@ -686,7 +686,7 @@ public unsafe static class GL
         fixed (short* v2Ptr = v2)
             Interface->glRectsv(v1Ptr, v2Ptr);
     }
-    public static int RenderMode(Render mode) => Interface->glRenderMode(mode);
+    public static int RenderMode(RenderEnum mode) => Interface->glRenderMode(mode);
     public static void Rotated(double angle, double x, double y, double z) => Interface->glRotated(angle, x, y, z);
     public static void Rotatef(float angle, float x, float y, float z) => Interface->glRotatef(angle, x, y, z);
     public static void Scaled(double x, double y, double z) => Interface->glScaled(x, y, z);
@@ -697,10 +697,10 @@ public unsafe static class GL
         fixed (uint* bufferPtr = buffer)
             Interface->glSelectBuffer(size, bufferPtr);
     }
-    public static void ShadeModel(Fill mode) => Interface->glShadeModel(mode);
+    public static void ShadeModel(FillType mode) => Interface->glShadeModel(mode);
     public static void StencilFunc(Func func, int @ref, uint mask) => Interface->glStencilFunc(func, @ref, mask);
     public static void StencilMask(uint mask) => Interface->glStencilMask(mask);
-    public static void StencilOp(Fail fail, Fail zfail, Fail zpass) => Interface->glStencilOp(fail, zfail, zpass);
+    public static void StencilOp(FailType fail, FailType zfail, FailType zpass) => Interface->glStencilOp(fail, zfail, zpass);
     public static void TexCoord1d(double s) => Interface->glTexCoord1d(s);
     public static void TexCoord1dv(double[] v)
     {
@@ -810,20 +810,20 @@ public unsafe static class GL
         fixed (int* @paramsPtr = @params)
             Interface->glTexEnviv(TextureEnv, pname, @paramsPtr);
     }
-    public static void TexGend(Coords coord, TexGen pname, double param) => Interface->glTexGend(coord, pname, param);
-    public static void TexGendv(Coords coord, TexGen pname, double[] @params)
+    public static void TexGend(CoordsEnum coord, TexGen pname, double param) => Interface->glTexGend(coord, pname, param);
+    public static void TexGendv(CoordsEnum coord, TexGen pname, double[] @params)
     {
         fixed (double* @paramsPtr = @params)
             Interface->glTexGendv(coord, pname, @paramsPtr);
     }
-    public static void TexGenf(Coords coord, TexGen pname, float param) => Interface->glTexGenf(coord, pname, param);
-    public static void TexGenfv(Coords coord, TexGen pname, float[] @params)
+    public static void TexGenf(CoordsEnum coord, TexGen pname, float param) => Interface->glTexGenf(coord, pname, param);
+    public static void TexGenfv(CoordsEnum coord, TexGen pname, float[] @params)
     {
         fixed (float* @paramsPtr = @params)
             Interface->glTexGenfv(coord, pname, @paramsPtr);
     }
-    public static void TexGeni(Coords coord, TexGen pname, int param) => Interface->glTexGeni(coord, pname, param);
-    public static void TexGeniv(Coords coord, TexGen pname, int[] @params)
+    public static void TexGeni(CoordsEnum coord, TexGen pname, int param) => Interface->glTexGeni(coord, pname, param);
+    public static void TexGeniv(CoordsEnum coord, TexGen pname, int[] @params)
     {
         fixed (int* @paramsPtr = @params)
             Interface->glTexGeniv(coord, pname, @paramsPtr);
@@ -922,18 +922,18 @@ public unsafe static class GL
     public static void VertexPointer(int size, TexType type, int stride, pointer pointer) => Interface->glVertexPointer(size, type, stride, pointer);
     public static void Viewport(int x, int y, int width, int height) => Interface->glViewport(x, y, width, height);
 
-    /* After OpenGL 1.1 */
-
-    public static void GenBuffers(int n, uint[] buffers)
-    {
-        fixed (uint* buffersPtr = buffers)
-            Interface->glGenBuffers(n, buffersPtr);
-    }
-    public static void DeleteBuffers(int n, uint[] buffers)
-    {
-        fixed (uint* buffersPtr = buffers)
-            Interface->glDeleteBuffers(n, buffersPtr);
-    }
-    public static void BindBuffer(Enums.Buffer type, uint buffer) => Interface->glBindBuffer(type, buffer);
-    public static void BufferData(Enums.Buffer type, int size, pointer data, BufferUsage usage) => Interface->glBufferData(type, size, data, usage);
+    /* wgl flavor-functions */
+    public static bool CopyContext(nint source, nint dest, uint mask) => Interface->wglCopyContext(source, dest, mask);
+    public static nint CreateContext(nint hdc) => Interface->wglCreateContext(hdc);
+    public static nint CreateLayerContext(nint hdc, int layerPlane) => Interface->wglCreateLayerContext(hdc, layerPlane);
+    public static bool DeleteContext(nint context) => Interface->wglDeleteContext(context);
+    public static nint GetCurrentContext() => Interface->wglGetCurrentContext();
+    public static nint GetCurrentDC() => Interface->wglGetCurrentDC();
+    public static nint GetProcAddress(byte* name) => Interface->wglGetProcAddress(name);
+    public static bool MakeCurrent(nint hdc, nint context) => Interface->wglMakeCurrent(hdc, context);
+    public static bool ShareLists(nint context1, nint context2) => Interface->wglShareLists(context1, context2);
+    public static bool UseFontBitmapsA(nint hdc, uint first, uint count, uint listBase) => Interface->wglUseFontBitmapsA(hdc, first, count, listBase);
+    public static bool UseFontBitmapsW(nint hdc, uint first, uint count, uint listBase) => Interface->wglUseFontBitmapsW(hdc, first, count, listBase);
+    public static bool UseFontBitmaps(nint hdc, uint first, uint count, uint listBase) => Interface->wglUseFontBitmapsW(hdc, first, count, listBase);
+    public static bool SwapBuffers(nint hdc) => Interface->wglSwapBuffers(hdc);
 }

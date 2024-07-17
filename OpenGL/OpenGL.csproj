@@ -11,28 +11,35 @@
 	<Product />
 	<Description>High-level wrapper for native OpenGL 1.1 functions.
 Only works with already loaded opengl32.dll module</Description>
-	<Version>2.0.2</Version>
+	<Version>2.0.3</Version>
 	<PackageReadmeFile>PACK.md</PackageReadmeFile>
 	<IncludeContentInPack>true</IncludeContentInPack>
 	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	<PackageIcon>DotnetNativeLogo.png</PackageIcon>
 	<RepositoryUrl>https://github.com/DotnetNative/OpenGL</RepositoryUrl>
 	<Platforms>x64</Platforms>
 	<PackageProjectUrl>https://github.com/DotnetNative/OpenGL</PackageProjectUrl>
 	<PackageTags>dnb;naot;korn;opengl</PackageTags>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DotnetNativeBase" Version="1.0.3" />
+    <PackageReference Include="DotnetNativeBase" Version="1.0.7" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\..\DotnetNativeLogo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Visible>False</Visible>        
+    </None>
     <None Include="PACK.md">
-        <Pack>true</Pack>
-        <PackagePath></PackagePath>
-        <Visible>False</Visible>
+      <Pack>true</Pack>
+      <PackagePath></PackagePath>
+      <Visible>False</Visible>
     </None>
     <None Include="..\LICENSE.txt">
-        <Pack>true</Pack>
-        <PackagePath></PackagePath>
-        <Visible>False</Visible>
+      <Pack>true</Pack>
+      <PackagePath></PackagePath>
+      <Visible>False</Visible>
     </None>
   </ItemGroup>
   <ItemGroup>

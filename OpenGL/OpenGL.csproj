@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -22,11 +22,9 @@ Only works with already loaded opengl32.dll module</Description>
 	<PackageTags>dnb;naot;korn;opengl</PackageTags>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="DotnetNativeBase" Version="1.0.7" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\..\..\DotnetNativeLogo.png">
+    <None Include="..\..\DotnetNative\DotnetNativeLogo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
       <Visible>False</Visible>        
@@ -42,11 +40,15 @@ Only works with already loaded opengl32.dll module</Description>
       <Visible>False</Visible>
     </None>
   </ItemGroup>
+
   <ItemGroup>
-    <Using Include="OpenGL.Enums">
+    <ProjectReference Include="..\..\DotnetNative.Base\DotnetNative.Base\DotnetNative.Base.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Interop">
       <Static>True</Static>
     </Using>
-    <Using Include="OpenGL.Interop">
+    <Using Include="OpenGL.Enums">
       <Static>True</Static>
     </Using>
     <Using Include="System.Runtime.InteropServices" />

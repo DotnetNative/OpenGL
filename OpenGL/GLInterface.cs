@@ -1,46 +1,54 @@
 ﻿namespace OpenGL;
 public unsafe struct GLInterface
 {
-    public static readonly string[] FunctionsNames =
-@"glAccum glAlphaFunc glAreTexturesResident glArrayElement glBegin glBindTexture glBitmap glBlendFunc glCallList glCallLists glClear glClearAccum glClearColor
-glClearDepth glClearIndex glClearStencil glClipPlane glColor3b glColor3bv glColor3d glColor3dv glColor3f glColor3fv glColor3i glColor3iv glColor3s glColor3sv
-glColor3ub glColor3ubv glColor3ui glColor3uiv glColor3us glColor3usv glColor4b glColor4bv glColor4d glColor4dv glColor4f glColor4fv glColor4i glColor4iv glColor4s
-glColor4sv glColor4ub glColor4ubv glColor4ui glColor4uiv glColor4us glColor4usv glColorMask glColorMaterial glColorPointer glCopyPixels glCopyTexImage1D glCopyTexImage2D
-glCopyTexSubImage1D glCopyTexSubImage2D glCullFace glDeleteLists glDeleteTextures glDepthFunc glDepthMask glDepthRange glDisable glDisableClientState glDrawArrays
-glDrawBuffer glDrawElements glDrawPixels glEdgeFlag glEdgeFlagPointer glEdgeFlagv glEnable glEnableClientState glEnd glEndList glEvalCoord1d glEvalCoord1dv
-glEvalCoord1f glEvalCoord1fv glEvalCoord2d glEvalCoord2dv glEvalCoord2f glEvalCoord2fv glEvalMesh1 glEvalMesh2 glEvalPoint1 glEvalPoint2 glFeedbackBuffer glFinish
-glFlush glFogf glFogfv glFogi glFogiv glFrontFace glFrustum glGenLists glGenTextures glGetBooleanv glGetClipPlane glGetDoublev glGetError glGetFloatv glGetIntegerv
-glGetLightfv glGetLightiv glGetMapdv glGetMapfv glGetMapiv glGetMaterialfv glGetMaterialiv glGetPixelMapfv glGetPixelMapuiv glGetPixelMapusv glGetPointerv
-glGetPolygonStipple glGetString glGetTexEnvfv glGetTexEnviv glGetTexGendv glGetTexGenfv glGetTexGeniv glGetTexImage glGetTexLevelParameterfv glGetTexLevelParameteriv
-glGetTexParameterfv glGetTexParameteriv glHint glIndexMask glIndexPointer glIndexd glIndexdv glIndexf glIndexfv glIndexi glIndexiv glIndexs glIndexsv glIndexub
-glIndexubv glInitNames glInterleavedArrays glIsEnabled glIsList glIsTexture glLightModelf glLightModelfv glLightModeli glLightModeliv glLightf glLightfv glLighti
-glLightiv glLineStipple glLineWidth glListBase glLoadIdentity glLoadMatrixd glLoadMatrixf glLoadName glLogicOp glMap1d glMap1f glMap2d glMap2f glMapGrid1d
-glMapGrid1f glMapGrid2d glMapGrid2f glMaterialf glMaterialfv glMateriali glMaterialiv glMatrixMode glMultMatrixd glMultMatrixf glNewList glNormal3b glNormal3bv
-glNormal3d glNormal3dv glNormal3f glNormal3fv glNormal3i glNormal3iv glNormal3s glNormal3sv glNormalPointer glOrtho glPassThrough glPixelMapfv glPixelMapuiv
-glPixelMapusv glPixelStoref glPixelStorei glPixelTransferf glPixelTransferi glPixelZoom glPointSize glPolygonMode glPolygonOffset glPolygonStipple glPopAttrib
-glPopClientAttrib glPopMatrix glPopName glPrioritizeTextures glPushAttrib glPushClientAttrib glPushMatrix glPushName glRasterPos2d glRasterPos2dv glRasterPos2f
-glRasterPos2fv glRasterPos2i glRasterPos2iv glRasterPos2s glRasterPos2sv glRasterPos3d glRasterPos3dv glRasterPos3f glRasterPos3fv glRasterPos3i glRasterPos3iv
-glRasterPos3s glRasterPos3sv glRasterPos4d glRasterPos4dv glRasterPos4f glRasterPos4fv glRasterPos4i glRasterPos4iv glRasterPos4s glRasterPos4sv glReadBuffer
-glReadPixels glRectd glRectdv glRectf glRectfv glRecti glRectiv glRects glRectsv glRenderMode glRotated glRotatef glScaled glScalef glScissor glSelectBuffer
-glShadeModel glStencilFunc glStencilMask glStencilOp glTexCoord1d glTexCoord1dv glTexCoord1f glTexCoord1fv glTexCoord1i glTexCoord1iv glTexCoord1s glTexCoord1sv
-glTexCoord2d glTexCoord2dv glTexCoord2f glTexCoord2fv glTexCoord2i glTexCoord2iv glTexCoord2s glTexCoord2sv glTexCoord3d glTexCoord3dv glTexCoord3f glTexCoord3fv
-glTexCoord3i glTexCoord3iv glTexCoord3s glTexCoord3sv glTexCoord4d glTexCoord4dv glTexCoord4f glTexCoord4fv glTexCoord4i glTexCoord4iv glTexCoord4s glTexCoord4sv
-glTexCoordPointer glTexEnvf glTexEnvfv glTexEnvi glTexEnviv glTexGend glTexGendv glTexGenf glTexGenfv glTexGeni glTexGeniv glTexImage1D glTexImage2D glTexParameterf
-glTexParameterfv glTexParameteri glTexParameteriv glTexSubImage1D glTexSubImage2D glTranslated glTranslatef glVertex2d glVertex2dv glVertex2f glVertex2fv glVertex2i
-glVertex2iv glVertex2s glVertex2sv glVertex3d glVertex3dv glVertex3f glVertex3fv glVertex3i glVertex3iv glVertex3s glVertex3sv glVertex4d glVertex4dv glVertex4f
-glVertex4fv glVertex4i glVertex4iv glVertex4s glVertex4sv glVertexPointer glViewport
-wglCopyContext wglCreateContext wglCreateLayerContext wglDeleteContext wglGetCurrentContext wglGetCurrentDC wglGetProcAddress wglMakeCurrent
-wglShareLists wglUseFontBitmapsA wglUseFontBitmapsW wglSwapBuffers".Replace("\r", "").Split(' ', '\n');
-    public static readonly int FunctionsCount = FunctionsNames.Length;
+    public static readonly byte[] FunctionsNames = (
+        "glAccum\0glAlphaFunc\0glAreTexturesResident\0glArrayElement\0glBegin\0glBindTexture\0glBitmap\0glBlendFunc\0glCallList\0glCallLists\0glClear\0glClearAccum\0glClearColor\0"u8+
+        "glClearDepth\0glClearIndex\0glClearStencil\0glClipPlane\0glColor3b\0glColor3bv\0glColor3d\0glColor3dv\0glColor3f\0glColor3fv\0glColor3i\0glColor3iv\0glColor3s\0glColor3sv\0"u8 +
+        "glColor3ub\0glColor3ubv\0glColor3ui\0glColor3uiv\0glColor3us\0glColor3usv\0glColor4b\0glColor4bv\0glColor4d\0glColor4dv\0glColor4f\0glColor4fv\0glColor4i\0glColor4iv\0glColor4s\0"u8 +
+        "glColor4sv\0glColor4ub\0glColor4ubv\0glColor4ui\0glColor4uiv\0glColor4us\0glColor4usv\0glColorMask\0glColorMaterial\0glColorPointer\0glCopyPixels\0glCopyTexImage1D\0glCopyTexImage2D\0"u8 +
+        "glCopyTexSubImage1D\0glCopyTexSubImage2D\0glCullFace\0glDeleteLists\0glDeleteTextures\0glDepthFunc\0glDepthMask\0glDepthRange\0glDisable\0glDisableClientState\0glDrawArrays\0"u8 +
+        "glDrawBuffer\0glDrawElements\0glDrawPixels\0glEdgeFlag\0glEdgeFlagPointer\0glEdgeFlagv\0glEnable\0glEnableClientState\0glEnd\0glEndList\0glEvalCoord1d\0glEvalCoord1dv\0"u8 +
+        "glEvalCoord1f\0glEvalCoord1fv\0glEvalCoord2d\0glEvalCoord2dv\0glEvalCoord2f\0glEvalCoord2fv\0glEvalMesh1\0glEvalMesh2\0glEvalPoint1\0glEvalPoint2\0glFeedbackBuffer\0glFinish\0"u8 +
+        "glFlush\0glFogf\0glFogfv\0glFogi\0glFogiv\0glFrontFace\0glFrustum\0glGenLists\0glGenTextures\0glGetBooleanv\0glGetClipPlane\0glGetDoublev\0glGetError\0glGetFloatv\0glGetIntegerv\0"u8 +
+        "glGetLightfv\0glGetLightiv\0glGetMapdv\0glGetMapfv\0glGetMapiv\0glGetMaterialfv\0glGetMaterialiv\0glGetPixelMapfv\0glGetPixelMapuiv\0glGetPixelMapusv\0glGetPointerv\0"u8 +
+        "glGetPolygonStipple\0glGetString\0glGetTexEnvfv\0glGetTexEnviv\0glGetTexGendv\0glGetTexGenfv\0glGetTexGeniv\0glGetTexImage\0glGetTexLevelParameterfv\0glGetTexLevelParameteriv\0"u8 +
+        "glGetTexParameterfv\0glGetTexParameteriv\0glHint\0glIndexMask\0glIndexPointer\0glIndexd\0glIndexdv\0glIndexf\0glIndexfv\0glIndexi\0glIndexiv\0glIndexs\0glIndexsv\0glIndexub\0"u8 +
+        "glIndexubv\0glInitNames\0glInterleavedArrays\0glIsEnabled\0glIsList\0glIsTexture\0glLightModelf\0glLightModelfv\0glLightModeli\0glLightModeliv\0glLightf\0glLightfv\0glLighti\0"u8 +
+        "glLightiv\0glLineStipple\0glLineWidth\0glListBase\0glLoadIdentity\0glLoadMatrixd\0glLoadMatrixf\0glLoadName\0glLogicOp\0glMap1d\0glMap1f\0glMap2d\0glMap2f\0glMapGrid1d\0"u8 +
+        "glMapGrid1f\0glMapGrid2d\0glMapGrid2f\0glMaterialf\0glMaterialfv\0glMateriali\0glMaterialiv\0glMatrixMode\0glMultMatrixd\0glMultMatrixf\0glNewList\0glNormal3b\0glNormal3bv\0"u8 +
+        "glNormal3d\0glNormal3dv\0glNormal3f\0glNormal3fv\0glNormal3i\0glNormal3iv\0glNormal3s\0glNormal3sv\0glNormalPointer\0glOrtho\0glPassThrough\0glPixelMapfv\0glPixelMapuiv\0"u8 +
+        "glPixelMapusv\0glPixelStoref\0glPixelStorei\0glPixelTransferf\0glPixelTransferi\0glPixelZoom\0glPointSize\0glPolygonMode\0glPolygonOffset\0glPolygonStipple\0glPopAttrib\0"u8 +
+        "glPopClientAttrib\0glPopMatrix\0glPopName\0glPrioritizeTextures\0glPushAttrib\0glPushClientAttrib\0glPushMatrix\0glPushName\0glRasterPos2d\0glRasterPos2dv\0glRasterPos2f\0"u8 +
+        "glRasterPos2fv\0glRasterPos2i\0glRasterPos2iv\0glRasterPos2s\0glRasterPos2sv\0glRasterPos3d\0glRasterPos3dv\0glRasterPos3f\0glRasterPos3fv\0glRasterPos3i\0glRasterPos3iv\0"u8 +
+        "glRasterPos3s\0glRasterPos3sv\0glRasterPos4d\0glRasterPos4dv\0glRasterPos4f\0glRasterPos4fv\0glRasterPos4i\0glRasterPos4iv\0glRasterPos4s\0glRasterPos4sv\0glReadBuffer\0"u8 +
+        "glReadPixels\0glRectd\0glRectdv\0glRectf\0glRectfv\0glRecti\0glRectiv\0glRects\0glRectsv\0glRenderMode\0glRotated\0glRotatef\0glScaled\0glScalef\0glScissor\0glSelectBuffer\0"u8 +
+        "glShadeModel\0glStencilFunc\0glStencilMask\0glStencilOp\0glTexCoord1d\0glTexCoord1dv\0glTexCoord1f\0glTexCoord1fv\0glTexCoord1i\0glTexCoord1iv\0glTexCoord1s\0glTexCoord1sv\0"u8 +
+        "glTexCoord2d\0glTexCoord2dv\0glTexCoord2f\0glTexCoord2fv\0glTexCoord2i\0glTexCoord2iv\0glTexCoord2s\0glTexCoord2sv\0glTexCoord3d\0glTexCoord3dv\0glTexCoord3f\0glTexCoord3fv\0"u8 +
+        "glTexCoord3i\0glTexCoord3iv\0glTexCoord3s\0glTexCoord3sv\0glTexCoord4d\0glTexCoord4dv\0glTexCoord4f\0glTexCoord4fv\0glTexCoord4i\0glTexCoord4iv\0glTexCoord4s\0glTexCoord4sv\0"u8 +
+        "glTexCoordPointer\0glTexEnvf\0glTexEnvfv\0glTexEnvi\0glTexEnviv\0glTexGend\0glTexGendv\0glTexGenf\0glTexGenfv\0glTexGeni\0glTexGeniv\0glTexImage1D\0glTexImage2D\0glTexParameterf\0"u8 +
+        "glTexParameterfv\0glTexParameteri\0glTexParameteriv\0glTexSubImage1D\0glTexSubImage2D\0glTranslated\0glTranslatef\0glVertex2d\0glVertex2dv\0glVertex2f\0glVertex2fv\0glVertex2i\0"u8 +
+        "glVertex2iv\0glVertex2s\0glVertex2sv\0glVertex3d\0glVertex3dv\0glVertex3f\0glVertex3fv\0glVertex3i\0glVertex3iv\0glVertex3s\0glVertex3sv\0glVertex4d\0glVertex4dv\0glVertex4f\0"u8 +
+        "glVertex4fv\0glVertex4i\0glVertex4iv\0glVertex4s\0glVertex4sv\0glVertexPointer\0glViewport\0"u8 +
+        "wglCopyContext\0wglCreateContext\0wglCreateLayerContext\0wglDeleteContext\0wglGetCurrentContext\0wglGetCurrentDC\0wglGetProcAddress\0wglMakeCurrent\0"u8 +
+        "wglShareLists\0wglUseFontBitmapsA\0wglUseFontBitmapsW\0wglSwapBuffers\0"u8).ToArray();
 
-    public void Init(nint* ptr)
+    public void Init()
     {
-        Module = GetModuleHandle("opengl32");
-        if (Module == 0)
+        if ((ModuleHandle = GetModuleHandle("opengl32")) == 0 ||
+            (ModuleHandle = LoadLibrary("opengl32.dll")) == 0)
             return;
 
-        for (var i = 0; i < FunctionsCount; i++)
-            ptr[i] = GetProcAddress(Module, FunctionsNames[i]);
+        fixed (GLInterface* interfacePtr = &this)
+        fixed (byte* namesPtr = FunctionsNames)
+        {
+            var index = 0;
+            for (var i = 0; i < FunctionsNames.Length;)
+            {
+                ((nint*)interfacePtr)[index++] = GetProcAddress(ModuleHandle, namesPtr + i);
+
+                while (namesPtr[i++] != 0) { }
+            }
+        }
     }
 
     public delegate* unmanaged<Op, float, void> glAccum;
@@ -394,5 +402,5 @@ wglShareLists wglUseFontBitmapsA wglUseFontBitmapsW wglSwapBuffers".Replace("\r"
     public delegate* unmanaged<nint, uint, uint, uint, bool> wglUseFontBitmapsW;
     public delegate* unmanaged<nint, bool> wglSwapBuffers;
 
-    public nint Module;
+    public nint ModuleHandle;
 }

@@ -6,7 +6,7 @@ public static class Enums
     const int GL_RETURN = 258;
     const int GL_MULT = 259;
     const int GL_ADD = 260;
-    public enum Op : int
+    public enum Op
     {
         Accum = GL_ACCUM,
         Load = GL_LOAD,
@@ -25,7 +25,7 @@ public static class Enums
     const int GL_QUADS = 7;
     const int GL_QUAD_STRIP = 8;
     const int GL_POLYGON = 9;
-    public enum Mode : int
+    public enum Mode
     {
         Points = GL_POINTS,
         Lines = GL_LINES,
@@ -47,7 +47,7 @@ public static class Enums
     const int GL_NOTEQUAL = 517;
     const int GL_GEQUAL = 518;
     const int GL_ALWAYS = 519;
-    public enum Func : int
+    public enum Func
     {
         Never = GL_NEVER,
         Less = GL_LESS,
@@ -80,7 +80,7 @@ public static class Enums
     const int GL_TEXTURE_BIT = 262144;
     const int GL_SCISSOR_BIT = 524288;
     const int GL_ALL_ATTRIB_BITS = 1048575;
-    public enum Mask : int
+    public enum Mask
     {
         Current = GL_CURRENT_BIT,
         Point = GL_POINT_BIT,
@@ -105,7 +105,7 @@ public static class Enums
         All = GL_ALL_ATTRIB_BITS
     }
 
-    public enum LightOrdinal : int
+    public enum LightOrdinal
     {
         Light0 = GL_LIGHT0,
         Light1 = GL_LIGHT1,
@@ -132,7 +132,7 @@ public static class Enums
     const int GL_ONE_MINUS_CONSTANT_COLOR = 32770;
     const int GL_CONSTANT_ALPHA = 32771;
     const int GL_ONE_MINUS_CONSTANT_ALPHA = 32772;
-    public enum FactorEnum : int
+    public enum FactorEnum
     {
         Zero = GL_ZERO,
         One = GL_ONE,
@@ -153,7 +153,7 @@ public static class Enums
 
     const int GL_TRUE = 1;
     const int GL_FALSE = 0;
-    public enum GLBool : int
+    public enum GLBool
     {
         True = GL_TRUE,
         False = GL_FALSE,
@@ -165,7 +165,7 @@ public static class Enums
     const int GL_CLIP_PLANE3 = 12291;
     const int GL_CLIP_PLANE4 = 12292;
     const int GL_CLIP_PLANE5 = 12293;
-    public enum PlaneOrdinal : int
+    public enum PlaneOrdinal
     {
         Plane0 = GL_CLIP_PLANE0,
         Plane1 = GL_CLIP_PLANE1,
@@ -186,7 +186,7 @@ public static class Enums
     const int GL_3_BYTES = 5128;
     const int GL_4_BYTES = 5129;
     const int GL_DOUBLE = 5130;
-    public enum DataType : int
+    public enum DataType
     {
         Byte = GL_BYTE,
         UByte = GL_UNSIGNED_BYTE,
@@ -201,7 +201,7 @@ public static class Enums
         Double = GL_DOUBLE
     }
 
-    public enum BType : int
+    public enum BType
     {
         Byte = GL_BYTE,
         UByte = GL_UNSIGNED_BYTE,
@@ -213,21 +213,21 @@ public static class Enums
         Double = GL_DOUBLE
     }
 
-    public enum BUType : int
+    public enum BUType
     {
         UByte = GL_UNSIGNED_BYTE,
         UShort = GL_UNSIGNED_SHORT,
         UInt = GL_UNSIGNED_INT,
     }
 
-    public enum BSType : int
+    public enum BSType
     {
         Byte = GL_BYTE,
         Short = GL_SHORT,
         Int = GL_INT,
     }
 
-    public enum PtrType : int
+    public enum PtrType
     {
         Byte = GL_BYTE,
         Short = GL_SHORT,
@@ -236,7 +236,7 @@ public static class Enums
         Double = GL_DOUBLE,
     }
 
-    public enum TexType : int
+    public enum TexType
     {
         Short = GL_SHORT,
         Int = GL_INT,
@@ -244,7 +244,7 @@ public static class Enums
         Double = GL_DOUBLE
     }
 
-    public enum ImageType : int
+    public enum ImageType
     {
         Byte = GL_BYTE,
         UByte = GL_UNSIGNED_BYTE,
@@ -255,7 +255,7 @@ public static class Enums
         Bitmap = GL_BITMAP,
     }
 
-    public enum ReadType : int
+    public enum ReadType
     {
         Byte = GL_BYTE,
         UByte = GL_UNSIGNED_BYTE,
@@ -281,7 +281,7 @@ public static class Enums
     const int GL_AUX1 = 1034;
     const int GL_AUX2 = 1035;
     const int GL_AUX3 = 1036;
-    public enum BufType : int
+    public enum BufType
     {
         None = GL_NONE,
         FrontLeft = GL_FRONT_LEFT,
@@ -306,7 +306,7 @@ public static class Enums
     const int GL_STACK_OVERFLOW = 1283;
     const int GL_STACK_UNDERFLOW = 1284;
     const int GL_OUT_OF_MEMORY = 1285;
-    public enum Error : int
+    public enum Error
     {
         NoError = GL_NO_ERROR,
         InvalidEnum = GL_INVALID_ENUM,
@@ -322,7 +322,7 @@ public static class Enums
     const int GL_3D_COLOR = 1538;
     const int GL_3D_COLOR_TEXTURE = 1539;
     const int GL_4D_COLOR_TEXTURE = 1540;
-    public enum VertexType : int
+    public enum VertexType
     {
         V2D = GL_2D,
         V3D = GL_3D,
@@ -339,7 +339,7 @@ public static class Enums
     const int GL_DRAW_PIXEL_TOKEN = 1797;
     const int GL_COPY_PIXEL_TOKEN = 1798;
     const int GL_LINE_RESET_TOKEN = 1799;
-    public enum TokenType : int
+    public enum TokenType
     {
         PassThrough = GL_PASS_THROUGH_TOKEN,
         Point = GL_POINT_TOKEN,
@@ -353,13 +353,13 @@ public static class Enums
 
     const int GL_CW = 2304;
     const int GL_CCW = 2305;
-    public enum FaceMode : int
+    public enum FaceMode
     {
         CW = GL_CW,
         CCW = GL_CCW
     }
 
-    public enum FaceEnum : int
+    public enum FaceEnum
     {
         Front = GL_FRONT,
         Back = GL_BACK,
@@ -369,7 +369,7 @@ public static class Enums
     const int GL_COEFF = 2560;
     const int GL_ORDER = 2561;
     const int GL_DOMAIN = 2562;
-    public enum QueryType : int
+    public enum QueryType
     {
         Coeff = GL_COEFF,
         Order = GL_ORDER,
@@ -398,7 +398,7 @@ public static class Enums
     const int GL_MAP1_GRID_SEGMENTS = 3537;
     const int GL_MAP2_GRID_DOMAIN = 3538;
     const int GL_MAP2_GRID_SEGMENTS = 3539;
-    public enum Target : int
+    public enum Target
     {
         Map1Color = GL_MAP1_COLOR_4,
         Map1Index = GL_MAP1_INDEX,
@@ -424,7 +424,7 @@ public static class Enums
         Map2GridSegments = GL_MAP2_GRID_SEGMENTS,
     }
 
-    public enum Map1Target : int
+    public enum Map1Target
     {
         Map1Vertex3 = GL_MAP1_VERTEX_3,
         Map1Vertex4 = GL_MAP1_VERTEX_4,
@@ -437,7 +437,7 @@ public static class Enums
         Map1TextureCoord4 = GL_MAP1_TEXTURE_COORD_4,
     }
 
-    public enum MapTarget : int
+    public enum MapTarget
     {
         Map1Color = GL_MAP1_COLOR_4,
         Map1Index = GL_MAP1_INDEX,
@@ -634,7 +634,7 @@ public static class Enums
     const int GL_FEEDBACK_BUFFER_SIZE = 3569;
     const int GL_SELECTION_BUFFER_SIZE = 3572;
     const int GL_FEEDBACK_BUFFER_TYPE = 3570;
-    public enum PName : int
+    public enum PName
     {
         AccumAlphaBits = GL_ACCUM_ALPHA_BITS,
         AccumBlueBits = GL_ACCUM_BLUE_BITS,
@@ -902,7 +902,7 @@ public static class Enums
     const int GL_TEXTURE_GEN_S = 3168;
     const int GL_TEXTURE_GEN_T = 3169;
     const int GL_TEXTURE_GEN_R = 3170;
-    public enum Cap : int
+    public enum Cap
     {
         PointSmooth = GL_POINT_SMOOTH,
         AlphaTest = GL_ALPHA_TEST,
@@ -943,14 +943,14 @@ public static class Enums
 
     const int GL_LIGHT_MODEL_LOCAL_VIEWER = 2897;
     const int GL_LIGHT_MODEL_TWO_SIDE = 2898;
-    public enum LightModel : int
+    public enum LightModel
     {
         LocalViewer = GL_LIGHT_MODEL_LOCAL_VIEWER,
         TwoSides = GL_LIGHT_MODEL_TWO_SIDE
     }
 
     const int GL_LIGHT_MODEL_AMBIENT = 2899;
-    public enum Ambient : int
+    public enum Ambient
     {
         LocalViewer = GL_LIGHT_MODEL_LOCAL_VIEWER,
         TwoSides = GL_LIGHT_MODEL_TWO_SIDE,
@@ -959,26 +959,26 @@ public static class Enums
 
     const int GL_FLAT = 7424;
     const int GL_SMOOTH = 7425;
-    public enum FillType : int
+    public enum FillType
     {
         Flat = GL_FLAT,
         Smooth = GL_SMOOTH
     }
 
-    public enum MaterialFace : int
+    public enum MaterialFace
     {
         Front = GL_FRONT,
         Back = GL_BACK,
         FrontAndBack = GL_FRONT_AND_BACK
     }
 
-    public enum SideEnum : int
+    public enum SideEnum
     {
         Front = GL_FRONT,
         Back = GL_BACK
     }
 
-    public enum TransferN : int
+    public enum TransferN
     {
         MapColor = GL_MAP_COLOR,
         MapStencil = GL_MAP_STENCIL,
@@ -1001,7 +1001,7 @@ public static class Enums
     const int GL_DIFFUSE = 4609;
     const int GL_SPECULAR = 4610;
     const int GL_AMBIENT_AND_DIFFUSE = 5634;
-    public enum MaterialParam : int
+    public enum MaterialParam
     {
         Emission = GL_EMISSION,
         Ambient = GL_AMBIENT,
@@ -1012,7 +1012,7 @@ public static class Enums
         ColorIndex = GL_COLOR_INDEX
     }
 
-    public enum StoreN : int
+    public enum StoreN
     {
         SwapBytes = GL_PACK_SWAP_BYTES,
         LSBFirst = GL_PACK_LSB_FIRST,
@@ -1027,7 +1027,7 @@ public static class Enums
     const int GL_FOG_START = 2915;
     const int GL_FOG_END = 2916;
     const int GL_FOG_MODE = 2917;
-    public enum Fog : int
+    public enum Fog
     {
         Index = GL_FOG_INDEX,
         Density = GL_FOG_DENSITY,
@@ -1037,7 +1037,7 @@ public static class Enums
     }
 
     const int GL_FOG_COLOR = 2918;
-    public enum FogV : int
+    public enum FogV
     {
         Index = GL_FOG_INDEX,
         Density = GL_FOG_DENSITY,
@@ -1047,7 +1047,7 @@ public static class Enums
         Color = GL_FOG_COLOR
     }
 
-    public enum Hint : int
+    public enum Hint
     {
         Fog = GL_FOG_HINT,
         LineSmooth = GL_LINE_SMOOTH_HINT,
@@ -1061,7 +1061,7 @@ public static class Enums
     const int GL_INCR = 7682;
     const int GL_DECR = 7683;
     const int GL_INVERT = 5386;
-    public enum FailType : int
+    public enum FailType
     {
         Keep = GL_KEEP,
         Zero = GL_ZERO,
@@ -1074,7 +1074,7 @@ public static class Enums
     const int GL_MODELVIEW = 5888;
     const int GL_PROJECTION = 5889;
     const int GL_TEXTURE = 5890;
-    public enum MatrixType : int
+    public enum MatrixType
     {
         Modelview = GL_MODELVIEW,
         Projection = GL_PROJECTION,
@@ -1091,7 +1091,7 @@ public static class Enums
     const int GL_PIXEL_MAP_G_TO_G = 3191;
     const int GL_PIXEL_MAP_B_TO_B = 3192;
     const int GL_PIXEL_MAP_A_TO_A = 3193;
-    public enum MapType : int
+    public enum MapType
     {
         IToI = GL_PIXEL_MAP_I_TO_I,
         SToS = GL_PIXEL_MAP_S_TO_S,
@@ -1113,7 +1113,7 @@ public static class Enums
     const int GL_TEXTURE_COORD_ARRAY_POINTER = 32914;
     const int GL_SELECTION_BUFFER_POINTER = 3571;
     const int GL_VERTEX_ARRAY_POINTER = 32910;
-    public enum PNamePtr : int
+    public enum PNamePtr
     {
         ColorArray = GL_COLOR_ARRAY_POINTER,
         EdgeFlagArray = GL_EDGE_FLAG_ARRAY_POINTER,
@@ -1127,7 +1127,7 @@ public static class Enums
 
     const int GL_PROXY_TEXTURE_1D = 32867;
     const int GL_PROXY_TEXTURE_2D = 32868;
-    public enum TexPTarget : int
+    public enum TexPTarget
     {
         Texture1D = GL_TEXTURE_1D,
         Texture2D = GL_TEXTURE_2D,
@@ -1135,7 +1135,7 @@ public static class Enums
         ProxyTexture2D = GL_PROXY_TEXTURE_2D
     }
 
-    public enum TexTarget : int
+    public enum TexTarget
     {
         Texture1D = GL_TEXTURE_1D,
         Texture2D = GL_TEXTURE_2D
@@ -1152,7 +1152,7 @@ public static class Enums
     const int GL_TEXTURE_LUMINANCE_SIZE = 32864;
     const int GL_TEXTURE_INTENSITY_SIZE = 32865;
     const int GL_TEXTURE_COMPONENTS = 4099;
-    public enum TexN : int
+    public enum TexN
     {
         Width = GL_TEXTURE_WIDTH,
         Height = GL_TEXTURE_HEIGHT,
@@ -1167,7 +1167,7 @@ public static class Enums
         Components = GL_TEXTURE_COMPONENTS
     }
 
-    public enum TexEnvN : int
+    public enum TexEnvN
     {
         Mode = GL_TEXTURE_ENV_MODE,
         Color = GL_TEXTURE_ENV_COLOR,
@@ -1180,7 +1180,7 @@ public static class Enums
     const int GL_TEXTURE_BORDER_COLOR = 4100;
     const int GL_TEXTURE_PRIORITY = 32870;
     const int GL_TEXTURE_RESIDENT = 32871;
-    public enum TexNV : int
+    public enum TexNV
     {
         MagFilter = GL_TEXTURE_MAG_FILTER,
         MinFilter = GL_TEXTURE_MIN_FILTER,
@@ -1191,7 +1191,7 @@ public static class Enums
         Resident = GL_TEXTURE_RESIDENT
     }
 
-    public enum TexNV2 : int
+    public enum TexNV2
     {
         MinFilter = GL_TEXTURE_MIN_FILTER,
         MagFilter = GL_TEXTURE_MAG_FILTER,
@@ -1204,7 +1204,7 @@ public static class Enums
     const int GL_DONT_CARE = 4352;
     const int GL_FASTEST = 4353;
     const int GL_NICEST = 4354;
-    public enum CalcType : int
+    public enum CalcType
     {
         DontCare = GL_DONT_CARE,
         Fastest = GL_FASTEST,
@@ -1218,7 +1218,7 @@ public static class Enums
     const int GL_CONSTANT_ATTENUATION = 4615;
     const int GL_LINEAR_ATTENUATION = 4616;
     const int GL_QUADRATIC_ATTENUATION = 4617;
-    public enum LightN : int
+    public enum LightN
     {
         Ambient = GL_AMBIENT,
         Diffuse = GL_DIFFUSE,
@@ -1247,7 +1247,7 @@ public static class Enums
     const int GL_AND_INVERTED = 5380;
     const int GL_OR_REVERSE = 5387;
     const int GL_OR_INVERTED = 5389;
-    public enum OpCode : int
+    public enum OpCode
     {
         Clear = GL_CLEAR,
         Set = GL_SET,
@@ -1269,7 +1269,7 @@ public static class Enums
 
     const int GL_SHININESS = 5633;
     const int GL_COLOR_INDEXES = 5635;
-    public enum ColorIndex : int
+    public enum ColorIndex
     {
         Shininess = GL_SHININESS,
         ColorIndexes = GL_COLOR_INDEXES,
@@ -1284,7 +1284,7 @@ public static class Enums
     const int GL_RGBA = 6408;
     const int GL_LUMINANCE = 6409;
     const int GL_LUMINANCE_ALPHA = 6410;
-    public enum ImagePixelType : int
+    public enum ImagePixelType
     {
         ColorIndex = GL_COLOR_INDEX,
         Red = GL_RED,
@@ -1299,7 +1299,7 @@ public static class Enums
 
     const int GL_STENCIL_INDEX = 6401;
     const int GL_DEPTH_COMPONENT = 6402;
-    public enum PixelType : int
+    public enum PixelType
     {
         ColorIndex = GL_COLOR_INDEX,
         StencilIndex = GL_STENCIL_INDEX,
@@ -1317,7 +1317,7 @@ public static class Enums
     const int GL_COLOR = 6144;
     const int GL_DEPTH = 6145;
     const int GL_STENCIL = 6146;
-    public enum CopyType : int
+    public enum CopyType
     {
         Color = GL_COLOR,
         Depth = GL_DEPTH,
@@ -1327,14 +1327,14 @@ public static class Enums
     const int GL_POINT = 6912;
     const int GL_LINE = 6913;
     const int GL_FILL = 6914;
-    public enum MeshType : int
+    public enum MeshType
     {
         Point = GL_POINT,
         Line = GL_LINE,
         Fill = GL_FILL
     }
 
-    public enum EMesh : int
+    public enum EMesh
     {
         Point = GL_POINT,
         Line = GL_LINE,
@@ -1343,7 +1343,7 @@ public static class Enums
     const int GL_RENDER = 7168;
     const int GL_FEEDBACK = 7169;
     const int GL_SELECT = 7170;
-    public enum RenderEnum : int
+    public enum RenderEnum
     {
         Render = GL_RENDER,
         Feedback = GL_FEEDBACK,
@@ -1354,7 +1354,7 @@ public static class Enums
     const int GL_RENDERER = 7937;
     const int GL_VERSION = 7938;
     const int GL_EXTENSIONS = 7939;
-    public enum StringName : int
+    public enum StringName
     {
         Vendor = GL_VENDOR,
         Renderer = GL_RENDERER,
@@ -1366,7 +1366,7 @@ public static class Enums
     const int GL_T = 8193;
     const int GL_R = 8194;
     const int GL_Q = 8195;
-    public enum CoordsEnum : int
+    public enum CoordsEnum
     {
         S = GL_S,
         T = GL_T,
@@ -1376,7 +1376,7 @@ public static class Enums
 
     const int GL_MODULATE = 8448;
     const int GL_DECAL = 8449;
-    public enum TexEnv : int
+    public enum TexEnv
     {
         Modulate = GL_MODULATE,
         Decal = GL_DECAL,
@@ -1387,7 +1387,7 @@ public static class Enums
     const int GL_OBJECT_LINEAR = 9217;
     const int GL_EYE_LINEAR = 9216;
     const int GL_SPHERE_MAP = 9218;
-    public enum TexGen : int
+    public enum TexGen
     {
         ObjectLinear = GL_OBJECT_LINEAR,
         EyeLinear = GL_EYE_LINEAR,
@@ -1397,7 +1397,7 @@ public static class Enums
     const int GL_TEXTURE_GEN_MODE = 9472;
     const int GL_OBJECT_PLANE = 9473;
     const int GL_EYE_PLANE = 9474;
-    public enum TexGenN : int
+    public enum TexGenN
     {
         TextureGenMode = GL_TEXTURE_GEN_MODE,
         ObjectPlane = GL_OBJECT_PLANE,
@@ -1410,7 +1410,7 @@ public static class Enums
     const int GL_LINEAR_MIPMAP_NEAREST = 9985;
     const int GL_NEAREST_MIPMAP_LINEAR = 9986;
     const int GL_LINEAR_MIPMAP_LINEAR = 9987;
-    public enum TexParam : int
+    public enum TexParam
     {
         Nearest = GL_NEAREST,
         Linear = GL_LINEAR,
@@ -1423,7 +1423,7 @@ public static class Enums
     const int GL_CLIENT_PIXEL_STORE_BIT = 1;
     const int GL_CLIENT_VERTEX_ARRAY_BIT = 2;
     const int GL_ALL_CLIENT_ATTRIB_BITS = -1;
-    public enum ClientMask : int
+    public enum ClientMask
     {
         PixelStoreBit = GL_CLIENT_PIXEL_STORE_BIT,
         VertexArrayBit = GL_CLIENT_VERTEX_ARRAY_BIT,
@@ -1463,7 +1463,7 @@ public static class Enums
     const int GL_RGB10_A2 = 32857;
     const int GL_RGBA12 = 32858;
     const int GL_RGBA16 = 32859;
-    public enum InternalFormat : int
+    public enum InternalFormat
     {
         ColorIndex = GL_COLOR_INDEX,
         Red = GL_RED,
@@ -1511,7 +1511,7 @@ public static class Enums
 
     const int GL_BGR_EXT = 32992;
     const int GL_BGRA_EXT = 32993;
-    public enum ImageFormat : int
+    public enum ImageFormat
     {
         ColorIndex = GL_COLOR_INDEX,
         StencilIndex = GL_STENCIL_INDEX,
@@ -1542,7 +1542,7 @@ public static class Enums
     const int GL_T2F_N3F_V3F = 10795;
     const int GL_T2F_C4F_N3F_V3F = 10796;
     const int GL_T4F_C4F_N3F_V4F = 10797;
-    public enum ArrayFormat : int
+    public enum ArrayFormat
     {
         V2F = GL_V2F,
         V3F = GL_V3F,
@@ -1560,7 +1560,7 @@ public static class Enums
         T4FC4FN3FV4F = GL_T4F_C4F_N3F_V4F
     }
 
-    public enum ArrayState : int
+    public enum ArrayState
     {
         Color = GL_COLOR_ARRAY,
         EdgeFlag = GL_EDGE_FLAG_ARRAY,
@@ -1570,13 +1570,13 @@ public static class Enums
         Vertex = GL_VERTEX_ARRAY
     }
 
-    public enum CompileState : int
+    public enum CompileState
     {
         Compile = GL_COMPILE,
         CompileAndExecute = GL_COMPILE_AND_EXECUTE
     }
 
-    public enum OtherType : int
+    public enum OtherType
     {
         Exp = GL_EXP,
         Exp2 = GL_EXP2,
@@ -1629,7 +1629,7 @@ public static class Enums
     const int GL_TEXTURE_BUFFER = 0x8C2A;
     const int GL_TRANSFORM_FEEDBACK_BUFFER = 0x8C8E;
     const int GL_UNIFORM_BUFFER = 0x8A11;
-    public enum BufferType : int
+    public enum BufferType
     {
         Array = GL_ARRAY_BUFFER,
         AtomicCounter = GL_ATOMIC_COUNTER_BUFFER,
@@ -1656,7 +1656,7 @@ public static class Enums
     const int GL_DYNAMIC_DRAW = 0x88E8;
     const int GL_DYNAMIC_READ = 0x88E9;
     const int GL_DYNAMIC_COPY = 0x88EA;
-    public enum BufferUsage : int
+    public enum BufferUsage
     {
         StreamDraw = GL_STREAM_DRAW,
         StreamRead = GL_STREAM_READ,
